@@ -1,0 +1,76 @@
+<h1><%= @animal%>の情報編集ページ</h1>
+
+<%= form_with(model: @animal, local:true, url: animal_path, method: :patch) do |form|%>
+  <% if @animal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@animal.errors.count, "error") %> 件のエラーがあるため投稿できません</h2>
+      <ul>
+        <% @animal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="animal_pictures">
+    <%= form.file_field :images, multiple: true %>
+  </div>
+
+  <div class="select_pettype">
+  <p>動物の種類</p>
+    <%= form.label :"猫" %>
+    <%= form.radio_button :pet_type, true %>
+    <%= form.label :"犬" %>
+    <%= form.radio_button :pet_type, false %>
+  </div>
+
+  <div class="pet_name">
+    <%= form.label :"名前" %>
+    <%= form.text_field :pet_name %>
+  </div>
+
+  <div class="select">
+    <p>性別を選択してください</p>
+    <%= form.label :"オス" %>
+    <%= form.radio_button :sex, true %>
+    <%= form.label :"メス" %>
+    <%= form.radio_button :sex, false %>
+  </div>
+
+  <div class="select">
+    <p>以下から条件に合う年齢を選択してください</p>
+    <%= form.select :age, 
+      [["0~3ヶ月", 0], ["3~6ヶ月", 1], ["6ヶ月~1歳", 2], ["1歳~1歳半", 3],
+      ["1歳半~2歳", 4],["2歳~3歳", 5],["3歳~4歳", 6], ["4歳~5歳", 7],
+      ["5歳~6歳", 8], ["6歳~7歳", 9], ["8歳~9歳", 10], ["9歳~10歳", 11],
+      ["10歳以上", 12]
+      ], include_blank: "年齢を選択して下さい"
+    %>
+  </div>
+
+  <div class="select">
+    <p>ワクチンの接種状況を選択してください</p>
+    <%= form.label :"接種済み" %>
+    <%= form.radio_button :vaccinated, true %>
+    <%= form.label :"未接種" %>
+    <%= form.radio_button :vaccinated, false %>
+  </div>
+
+  <div class="select">
+    <p>去勢手術の状況を選択してください</p>
+    <%= form.label :"去勢済み" %>
+    <%= form.radio_button :spayed_neutered, true %>
+    <%= form.label :"未去勢" %>
+    <%= form.radio_button :spayed_neutered, false %>
+  </div>
+
+  <div class="note">
+    <%= form.label :"ペットの説明やその他記載" %>
+    <%= form.text_area :note %>
+  </div>
+
+
+  <%= form.submit "情報を上書きする"%>
+<% end %>
+
+<%= link_to "一覧画面にもどる", animals_path %>

@@ -1,0 +1,23 @@
+<header>
+  <h1>PETPARTNER</h1>
+  <p><%= notice %></p>
+  <p><%= link_to "掲載する", new_animal_path %><p>
+</header>
+
+<body>
+  <table>
+    <% @animals.each do |animal|%>
+      <tr>
+        <td>
+          <%= link_to animal_path(animal) do %>
+            <%= image_tag url_for(animal.images.first), size: "200x200" if animal.images.first.present? %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</body>
+
+<footer>
+  <p>@PETPARTNER</p>
+</footer>

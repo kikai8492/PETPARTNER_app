@@ -1,0 +1,62 @@
+<h1><%= @animal.pet_name%>のページ<h1>
+<%if @animal.images.attached? %>
+  <% @animal.images.each do |image|%>
+    <%= image_tag image, size:"200x200" %>
+  <% end %>
+<% end %>
+
+<% if @animal.pet_type == true%>
+  <p>種類:猫</p>
+<% else %>
+  <p>種類:犬</p>
+<% end %>
+
+<% if @animal.sex == true%>
+  <p>性別:オス</p>
+<% else %>
+  <p>性別:メス</p>
+<% end %>
+
+<% if @animal.age == 0%>
+  <p>年齢:0~3ヶ月</p>
+<% elsif @animal.age ==1 %>
+  <p>年齢:3ヶ月~6ヶ月</p>
+<% elsif @animal.age ==2 %>
+  <p>年齢:6ヶ月~1歳</p>
+<% elsif @animal.age ==3 %>
+  <p>年齢:1歳~1歳半</p>
+<% elsif @animal.age ==4 %>
+  <p>年齢:1歳半~2歳</p>
+<% elsif @animal.age ==5 %>
+  <p>年齢:2歳~3歳</p>
+<% elsif @animal.age ==6 %>
+  <p>年齢:3歳~4歳</p>
+<% elsif @animal.age ==7 %>
+  <p>年齢:4歳~5歳</p>
+<% elsif @animal.age ==8 %>
+  <p>年齢:5歳~6歳</p>
+<% elsif @animal.age ==9 %>
+  <p>年齢:6歳~7歳</p>
+<% elsif @animal.age ==10 %>
+  <p>年齢:8歳~9歳</p>
+<% elsif @animal.age ==11 %>
+  <p>年齢:9歳~10歳</p>
+<% else %>
+  <p>年齢:10歳以上</p>
+<% end %>
+
+<% if @animal.vaccinated == true%>
+  <p>ワクチン:接種済み</p>
+<% else %>
+  <p>ワクチン:未接種</p>
+<% end %>
+
+<% if @animal.spayed_neutered == true%>
+  <p>去勢手術:去勢済み</p>
+<% else %>
+  <p>去勢手術:未去勢</p>
+<% end %>
+
+<p>説明:<%= @animal.note%></p>
+
+<%= link_to "一覧画面に戻る", animals_path%>
