@@ -38,15 +38,15 @@ class AnimalsController < ApplicationController
   end
 
   def new
-    if user_signed_in?
+    if user_signed_in? 
       @animal = Animal.new
     else
-      render :index, notice: "ログインしてください"
+      redirect_to animals_path, notice: "ログインしてください"
     end
   end
 
   def create
-    @animal = Animal.new(animal_params)
+    @animal = current_user.animals.build(animal_params)
     if @animal.save
       redirect_to animals_path, notice: "登録しました"
     else
@@ -60,6 +60,9 @@ class AnimalsController < ApplicationController
 
   def edit
     @animal = Animal.find(params[:id])
+    if @animal.user_id != current_user.id
+      redirect_to animals_path, notice: "他人の掲載情報は編集できません"
+    end
   end
 
   def update

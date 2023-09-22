@@ -155,6 +155,12 @@
 
 <p>説明:<%= @animal.note%></p>
 
-<%= link_to "動物の情報を編集する", edit_animal_path %>
-<%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"}%>
+<% if @animal.user == current_user%>
+  <%= link_to "動物の情報を編集する", edit_animal_path %>
+  <%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"}%>
+<% end %>
+
+<% if user_signed_in? && @animal.user != current_user%>
+  <%= link_to "この動物に応募する" %>
+<% end %>
 <%= link_to "一覧画面に戻る", animals_path%>
