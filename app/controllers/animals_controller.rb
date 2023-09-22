@@ -38,7 +38,11 @@ class AnimalsController < ApplicationController
   end
 
   def new
-    @animal = Animal.new
+    if user_signed_in?
+      @animal = Animal.new
+    else
+      render :index, notice: "ログインしてください"
+    end
   end
 
   def create
