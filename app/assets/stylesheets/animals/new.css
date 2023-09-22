@@ -1,0 +1,9 @@
+#image_preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;  /* 画像間のスペース */
+}
+
+.preview-image {
+  display: inline-block;
+}
