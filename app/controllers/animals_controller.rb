@@ -28,6 +28,11 @@ class AnimalsController < ApplicationController
       @animals = @animals.where(age: params[:age])
     end
 
+    # 都道府県で絞り込み
+    if params[:prefecture].present?
+      @animals = @animals.where(prefecture: params[:prefecture])
+    end
+
     #最終的な@animalsの結果をランダムに並び替え
     @animals = @animals.shuffle
   end
@@ -74,6 +79,6 @@ class AnimalsController < ApplicationController
   private
 
   def animal_params
-    params.require(:animal).permit(:pet_type, :pet_name, :sex, :age, :vaccinated, :spayed_neutered, :note, :trading_status, images:[])
+    params.require(:animal).permit(:pet_type, :pet_name, :sex, :age, :vaccinated, :spayed_neutered, :note, :trading_status, :prefecture, images:[])
   end
 end

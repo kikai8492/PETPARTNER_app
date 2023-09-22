@@ -8,6 +8,7 @@ class CreateAnimals < ActiveRecord::Migration[6.1]
       t.integer :vaccinated, null: false
       t.integer :spayed_neutered, null: false
       t.text :note, null: false
+      t.integer :prefecture, null: false
       t.integer :trading_status, null: false, default: 0
 
 

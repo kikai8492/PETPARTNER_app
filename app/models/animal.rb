@@ -5,6 +5,7 @@ class Animal < ApplicationRecord
   validates :age, presence: true
   validates :vaccinated, presence: true
   validates :spayed_neutered, presence: true
+  validates :prefecture, presence: true
   validates :note, presence: true
   validates :trading_status, presence: true
   validates :images, presence: true

@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 2023_09_22_043523) do
     t.integer "vaccinated", null: false
     t.integer "spayed_neutered", null: false
     t.text "note", null: false
+    t.integer "prefecture", null: false
     t.integer "trading_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["id"], name: "index_animals_on_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
