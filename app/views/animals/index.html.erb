@@ -1,19 +1,41 @@
 <header>
   <h1>PETPARTNER</h1>
-  <p><%= notice %></p>
   <p><%= link_to "掲載する", new_animal_path %><p>
+  <%= form_with(url: animals_path, local: true, method: :get) do |form|%>
+
+    <%= form.select :pet_type, [["猫",0],["犬",1]], include_blank: "動物を選択"%>
+
+    <%= form.select :vaccinated, [["接種済み",0],["未接種",1]], include_blank: "ワクチンの接種状況を選択"%>
+
+    <%= form.select :spayed_neutered, [["去勢済み",0],["未去勢",1]], include_blank: "去勢手術の状況を選択"%>
+
+    <%= form.select :sex, [["オス",0],["メス",1]], include_blank: "性別を選択"%>
+
+    <%= form.select :age, 
+    [ ["0~3ヶ月", 0], ["3~6ヶ月", 1], ["6ヶ月~1歳", 2], ["1歳~1歳半", 3],
+      ["1歳半~2歳", 4],["2歳~3歳", 5],["3歳~4歳", 6], ["4歳~5歳", 7],
+      ["5歳~6歳", 8], ["6歳~7歳", 9], ["8歳~9歳", 10], ["9歳~10歳", 11],
+      ["10歳以上", 12]
+    ], include_blank: "年齢を選択して下さい"%>
+
+    <%= form.submit "検索する"%>
+  <% end %>
 </header>
 
 <body>
   <table>
-    <% @animals.each do |animal|%>
-      <tr>
-        <td>
-          <%= link_to animal_path(animal) do %>
-            <%= image_tag url_for(animal.images.first), size: "200x200" if animal.images.first.present? %>
-          <% end %>
-        </td>
-      </tr>
+    <% if @animals.present?%>
+      <% @animals.each do |animal|%>
+        <tr>
+          <td>
+            <%= link_to animal_path(animal) do %>
+              <%= image_tag url_for(animal.images.first), size: "200x200" if animal.images.first.present? %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <h1>該当する動物はいません</h1>
     <% end %>
   </table>
 </body>

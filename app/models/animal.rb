@@ -12,6 +12,7 @@ class Animal < ApplicationRecord
 
   validate :images_max_length
   validate :images_min_length
+
   private
 
   def images_max_length

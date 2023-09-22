@@ -1,12 +1,12 @@
 class CreateAnimals < ActiveRecord::Migration[6.1]
   def change
     create_table :animals do |t|
-      t.boolean :pet_type, null: false
+      t.integer :pet_type, null: false
       t.string :pet_name, null: false
-      t.boolean :sex, null: false
+      t.integer :sex, null: false
       t.integer :age, null: false
-      t.boolean :vaccinated, null: false
-      t.boolean :spayed_neutered, null: false
+      t.integer :vaccinated, null: false
+      t.integer :spayed_neutered, null: false
       t.text :note, null: false
       t.integer :trading_status, null: false, default: 0
 

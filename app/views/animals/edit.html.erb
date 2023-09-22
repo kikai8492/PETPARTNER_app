@@ -1,4 +1,4 @@
-<h1><%= @animal%>の情報編集ページ</h1>
+<h1><%= @animal.pet_name%>の情報編集ページ</h1>
 
 <%= form_with(model: @animal, local:true, url: animal_path, method: :patch) do |form|%>
   <% if @animal.errors.any? %>
@@ -13,15 +13,22 @@
   <% end %>
 
   <div class="animal_pictures">
-    <%= form.file_field :images, multiple: true %>
+    <!-- 既存の画像を表示する部分 -->
+    <div id="image_preview">
+      <% @animal.images.each do |image| %>
+        <%= image_tag rails_blob_path(image, disposition: "attachment"), style: "width: 200px; height: auto;" %>
+      <% end %>
+    </div>
+    <!-- 画像アップロードのinput field -->
+    <%= form.file_field :images, multiple: true, id: 'image_field' %>
   </div>
 
   <div class="select_pettype">
-  <p>動物の種類</p>
+    <p>動物の種類</p>
     <%= form.label :"猫" %>
-    <%= form.radio_button :pet_type, true %>
+    <%= form.radio_button :pet_type, 0 %>
     <%= form.label :"犬" %>
-    <%= form.radio_button :pet_type, false %>
+    <%= form.radio_button :pet_type, 1 %>
   </div>
 
   <div class="pet_name">
@@ -32,9 +39,9 @@
   <div class="select">
     <p>性別を選択してください</p>
     <%= form.label :"オス" %>
-    <%= form.radio_button :sex, true %>
+    <%= form.radio_button :sex, 0 %>
     <%= form.label :"メス" %>
-    <%= form.radio_button :sex, false %>
+    <%= form.radio_button :sex, 1 %>
   </div>
 
   <div class="select">
@@ -51,17 +58,17 @@
   <div class="select">
     <p>ワクチンの接種状況を選択してください</p>
     <%= form.label :"接種済み" %>
-    <%= form.radio_button :vaccinated, true %>
+    <%= form.radio_button :vaccinated, 0 %>
     <%= form.label :"未接種" %>
-    <%= form.radio_button :vaccinated, false %>
+    <%= form.radio_button :vaccinated, 1 %>
   </div>
 
   <div class="select">
     <p>去勢手術の状況を選択してください</p>
     <%= form.label :"去勢済み" %>
-    <%= form.radio_button :spayed_neutered, true %>
+    <%= form.radio_button :spayed_neutered, 0 %>
     <%= form.label :"未去勢" %>
-    <%= form.radio_button :spayed_neutered, false %>
+    <%= form.radio_button :spayed_neutered, 1 %>
   </div>
 
   <div class="note">
@@ -74,3 +81,26 @@
 <% end %>
 
 <%= link_to "一覧画面にもどる", animals_path %>
+
+<script>
+  document.getElementById('image_field').addEventListener('change', function(e) {
+    // 既存のプレビュー画像をクリア
+    document.getElementById('image_preview').innerHTML = '';
+
+    var files = e.target.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+      reader.onload = (function(file) {
+        return function(e) {
+          // 画像として表示するためのHTMLを生成
+          var div = document.createElement('div');
+          div.innerHTML = '<img src="' + e.target.result + '" style="width: 200px; height: auto;" />';
+          // 画像を表示
+          document.getElementById('image_preview').appendChild(div);
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    }
+  });
+</script>

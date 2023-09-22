@@ -5,13 +5,13 @@
   <% end %>
 <% end %>
 
-<% if @animal.pet_type == true%>
+<% if @animal.pet_type == 0%>
   <p>種類:猫</p>
 <% else %>
   <p>種類:犬</p>
 <% end %>
 
-<% if @animal.sex == true%>
+<% if @animal.sex == 0%>
   <p>性別:オス</p>
 <% else %>
   <p>性別:メス</p>
@@ -45,13 +45,13 @@
   <p>年齢:10歳以上</p>
 <% end %>
 
-<% if @animal.vaccinated == true%>
+<% if @animal.vaccinated == 0%>
   <p>ワクチン:接種済み</p>
 <% else %>
   <p>ワクチン:未接種</p>
 <% end %>
 
-<% if @animal.spayed_neutered == true%>
+<% if @animal.spayed_neutered == 0%>
   <p>去勢手術:去勢済み</p>
 <% else %>
   <p>去勢手術:未去勢</p>
@@ -59,4 +59,6 @@
 
 <p>説明:<%= @animal.note%></p>
 
+<%= link_to "動物の情報を編集する", edit_animal_path %>
+<%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"}%>
 <%= link_to "一覧画面に戻る", animals_path%>
