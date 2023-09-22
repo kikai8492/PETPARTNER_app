@@ -1,6 +1,14 @@
 <header>
   <h1>PETPARTNER</h1>
   <p><%= link_to "掲載する", new_animal_path %><p>
+
+
+  <% if user_signed_in? %>
+    <p><%= current_user.nick_name%>でログイン中</p>
+    <p><%= link_to "マイページ", users_show_path%></p>
+  <% else %>
+    <p><%= link_to "ログイン", new_user_session_path %></p>
+  <% end %>
   <%= form_with(url: animals_path, local: true, method: :get) do |form|%>
 
     <%= form.select :pet_type, [["猫",0],["犬",1]], include_blank: "動物を選択"%>

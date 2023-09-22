@@ -1,0 +1,144 @@
+<h1><%= current_user.nick_name%>のページ</h1>
+
+<p>苗字:<%= current_user.last_name%></p>
+
+<p>名前:<%= current_user.first_name%></p>
+
+<p>ユーザーネーム:<%= current_user.nick_name%></p>
+
+<p>電話番号:<%= current_user.phone_number%></p>
+
+<p>メールアドレス:<%= current_user.email%></p>
+
+<p>郵便番号:<%= current_user.postal_code%></p>
+
+<% if current_user.prefecture == 0%>
+  <p>都道府県:北海道</p>
+<% elsif current_user.prefecture == 1%>
+  <p>都道府県:青森県</p>
+<% elsif current_user.prefecture == 2%>
+  <p>都道府県:岩手県</p>
+<% elsif current_user.prefecture == 3%>
+  <p>都道府県:宮城県</p>
+<% elsif current_user.prefecture == 4%>
+  <p>都道府県:秋田県</p>
+<% elsif current_user.prefecture == 5%>
+  <p>都道府県:山形県</p>
+  <% elsif current_user.prefecture ==7 %>
+  <p>都道府県:茨城県</p>
+<% elsif current_user.prefecture ==8 %>
+  <p>都道府県:栃木県</p>
+<% elsif current_user.prefecture == 9 %>
+  <p>都道府県:群馬県</p>
+<% elsif current_user.prefecture == 10 %>
+  <p>都道府県:埼玉県</p>
+<% elsif current_user.prefecture == 11 %>
+  <p>都道府県:千葉県</p>
+<% elsif current_user.prefecture == 12 %>
+  <p>都道府県:東京都</p>
+<% elsif current_user.prefecture == 13 %>
+  <p>都道府県:神奈川県</p>
+<% elsif current_user.prefecture == 14 %>
+  <p>都道府県:新潟県</p>
+<% elsif current_user.prefecture == 15 %>
+  <p>都道府県:富山県</p>
+<% elsif current_user.prefecture == 16 %>
+  <p>都道府県:石川県</p>
+<% elsif current_user.prefecture == 17 %>
+  <p>都道府県:福井県</p>
+<% elsif current_user.prefecture == 18 %>
+  <p>都道府県:山梨県</p>
+<% elsif current_user.prefecture == 19 %>
+  <p>都道府県:長野県</p>
+<% elsif current_user.prefecture == 20 %>
+  <p>都道府県:岐阜県</p>
+<% elsif current_user.prefecture == 21 %>
+  <p>都道府県:静岡県</p>
+<% elsif current_user.prefecture == 22 %>
+  <p>都道府県:愛知県</p>
+<% elsif current_user.prefecture == 23 %>
+  <p>都道府県:三重県</p>
+<% elsif current_user.prefecture == 24 %>
+  <p>都道府県:滋賀県</p>
+<% elsif current_user.prefecture == 25 %>
+  <p>都道府県:京都府</p>
+<% elsif current_user.prefecture == 26 %>
+  <p>都道府県:大阪府</p>
+<% elsif current_user.prefecture == 27 %>
+  <p>都道府県:兵庫県</p>
+<% elsif current_user.prefecture == 28 %>
+  <p>都道府県:奈良県</p>
+<% elsif current_user.prefecture == 29 %>
+  <p>都道府県:和歌山県</p>
+<% elsif current_user.prefecture == 30 %>
+  <p>都道府県:鳥取県</p>
+<% elsif current_user.prefecture == 31 %>
+  <p>都道府県:島根県</p>
+<% elsif current_user.prefecture == 32 %>
+  <p>都道府県:岡山県</p>
+<% elsif current_user.prefecture == 33 %>
+  <p>都道府県:広島県</p>
+<% elsif current_user.prefecture == 34 %>
+  <p>都道府県:山口県</p>
+<% elsif current_user.prefecture == 35 %>
+  <p>都道府県:徳島県</p>
+<% elsif current_user.prefecture == 36 %>
+  <p>都道府県:香川県</p>
+<% elsif current_user.prefecture == 37 %>
+  <p>都道府県:愛媛県</p>
+<% elsif current_user.prefecture == 38 %>
+  <p>都道府県:高知県</p>
+<% elsif current_user.prefecture == 39 %>
+  <p>都道府県:福岡県</p>
+<% elsif current_user.prefecture == 40 %>
+  <p>都道府県:佐賀県</p>
+<% elsif current_user.prefecture == 41 %>
+  <p>都道府県:長崎県</p>
+<% elsif current_user.prefecture == 42 %>
+  <p>都道府県:熊本県</p>
+<% elsif current_user.prefecture == 43 %>
+  <p>都道府県:大分県</p>
+<% elsif current_user.prefecture == 44 %>
+  <p>都道府県:宮崎県</p>
+<% elsif current_user.prefecture == 45 %>
+  <p>都道府県:鹿児島県</p>
+<% else %>
+  <p>都道府県:沖縄県</p>
+<% end %>
+
+<p>市区町村:<%= current_user.municipality%></p>
+
+<p>以降の住所:<%= current_user.street_address%></p>
+
+<% if current_user.movable_range == 0%>
+  <p>移動可能範囲:0~50km</p>
+<% elsif current_user.movable_range == 1%>
+  <p>移動可能範囲:50~100km</p>
+<% elsif current_user.movable_range == 2%>
+  <p>移動可能範囲:100~200km</p>
+<% else %>
+  <p>移動可能範囲:それ以上可能</p>
+<% end %>
+
+<% if current_user.sex == 0%>
+  <p>性別:男</p>
+<% elsif current_user.sex == 1%>
+  <p>性別:女</p>
+<% else %>
+  <p>性別:その他</p>
+<% end %>
+
+<% if current_user.occupation == 0%>
+  <p>職業:会社員</p>  
+<% elsif current_user.occupation == 1%>
+  <p>職業:学生</p>
+<% else %>
+  <p>職業:その他</p>
+<% end %>
+
+<p>自己紹介:<%= current_user.self_introduction%></p>
+
+<%= link_to "戻る", animals_path%>
+
+<%= link_to "ログアウトする", destroy_user_session_path, method: :delete%>
+

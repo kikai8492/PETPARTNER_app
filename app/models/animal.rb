@@ -1,4 +1,6 @@
 class Animal < ApplicationRecord
+  belongs_to :user
+  
   validates :pet_type, presence: true
   validates :pet_name, presence: true, length: { minimum:1, maximum: 255 }
   validates :sex, presence: true
