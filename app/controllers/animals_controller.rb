@@ -60,7 +60,7 @@ class AnimalsController < ApplicationController
 
   def edit
     @animal = Animal.find(params[:id])
-    if @animal.user_id != current_user.id
+    if @animal.user != current_user
       redirect_to animals_path, notice: "他人の掲載情報は編集できません"
     end
   end

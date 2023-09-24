@@ -1,5 +1,7 @@
 <h1><%= current_user.nick_name%>のページ</h1>
 
+<%= image_tag current_user.icon.url,width: "100rem", height: "100rem" %>
+
 <p>苗字:<%= current_user.last_name%></p>
 
 <p>名前:<%= current_user.first_name%></p>
@@ -24,7 +26,9 @@
   <p>都道府県:秋田県</p>
 <% elsif current_user.prefecture == 5%>
   <p>都道府県:山形県</p>
-  <% elsif current_user.prefecture ==7 %>
+<% elsif current_user.prefecture == 6%>
+  <p>都道府県:福島県</p>
+<% elsif current_user.prefecture ==7 %>
   <p>都道府県:茨城県</p>
 <% elsif current_user.prefecture ==8 %>
   <p>都道府県:栃木県</p>
@@ -140,5 +144,32 @@
 
 <%= link_to "戻る", animals_path%>
 
+
+<%= link_to "掲載中の動物の情報を見る", users_path%>
+
+<%= link_to "お気に入り動物一覧を見る", favorites_path, method: :get%>
+
+
+<%= link_to "編集する", edit_user_registration_path%>
 <%= link_to "ログアウトする", destroy_user_session_path, method: :delete%>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const inputElement = document.getElementById('icon_input');
+    const previewElement = document.getElementById('icon_preview');
+
+    inputElement.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          previewElement.setAttribute('src', e.target.result);
+          previewElement.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewElement.style.display = 'none';
+      }
+    });
+  });
+</script>

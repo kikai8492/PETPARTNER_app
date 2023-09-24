@@ -163,4 +163,13 @@
 <% if user_signed_in? && @animal.user != current_user%>
   <%= link_to "この動物に応募する" %>
 <% end %>
+
+<% if user_signed_in? && @animal.user != current_user%>
+  <% if current_user.favorited_by?(@animal.id)%>
+  <div><%= link_to "いいねを取り消す", animal_favorite_path(@animal), method: :delete%><%= @animal.favorites.count%></div>
+  <% else %>
+    <div><%= link_to "いいね", animal_favorites_path(@animal), method: :post%><%= @animal.favorites.count%></div>
+  <% end %>
+<% end %>
+
 <%= link_to "一覧画面に戻る", animals_path%>

@@ -1,5 +1,7 @@
 class Animal < ApplicationRecord
   belongs_to :user
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
   
   validates :pet_type, presence: true
   validates :pet_name, presence: true, length: { minimum:1, maximum: 255 }
