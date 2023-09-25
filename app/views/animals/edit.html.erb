@@ -23,76 +23,64 @@
     <%= form.file_field :images, multiple: true, id: 'image_field' %>
   </div>
 
-  <div class="select_pettype">
-    <p>動物の種類</p>
-    <%= form.label :"猫" %>
-    <%= form.radio_button :pet_type, 0 %>
-    <%= form.label :"犬" %>
-    <%= form.radio_button :pet_type, 1 %>
+  <div class="animal_type">
+      <%= form.label :"動物の種類"%>
+      <%= form.select :pet_type, [["猫"],["犬"]],include_blank: "選択して下さい"%>
+    </div>
+    
+
+    <div class="pet_name">
+      <%= form.label :"名前" %>
+      <%= form.text_field :pet_name %>
+    </div>
+
+    <div class="select">
+      <%= form.label :"動物の性別"%>
+      <%= form.select :sex, [["オス"],["メス"]],include_blank: "選択して下さい"%>
+    </div>
+
+    <div class="select">
+      <p>以下から条件に合う年齢を選択してください</p>
+      <%= form.select :age, 
+        [["0~3ヶ月"], ["3~6ヶ月"], ["6ヶ月~1歳",], ["1歳~1歳半"],
+        ["1歳半~2歳"],["2歳~3歳"],["3歳~4歳"], ["4歳~5歳"],
+        ["5歳~6歳"], ["6歳~7歳"], ["8歳~9歳"], ["9歳~10歳"],
+        ["10歳以上"]
+        ], include_blank: "年齢を選択して下さい"
+      %>
+    </div>
+
+    <div class="select">
+      <%= form.label :"ワクチン接種状況" %>
+      <%= form.select :vaccinated, [["接種済み"],["未接種"]],include_blank: "選択して下さい" %>
+    </div>
+
+    <div class="select">
+      <%= form.label :"去勢状況" %>
+      <%= form.select :spayed_neutered, [["去勢済み"],["未去勢"]],include_blank: "選択して下さい" %>
+    </div>
+
+    <div class="select">
+      <%= form.label :"都道府県" %>
+      <%= form.select :prefecture, 
+        [ ["北海道"],["青森県"],["岩手県"],["宮城県"],["秋田県"],
+          ["山形県"],["福島県"],["茨城県"],["栃木県"],["群馬県"],
+          ["埼玉県"],["千葉県"],["東京都"],["神奈川県"],["新潟県"],
+          ["富山県"],["石川県"],["福井県"],["山梨県"],["長野県"],
+          ["岐阜県"],["静岡県"],["愛知県"],["三重県"],["滋賀県"],
+          ["京都府"],["大阪府"],["兵庫県"],["奈良県"],["和歌山県"],
+          ["鳥取県"],["島根県"],["岡山県"],["広島県"],["山口県"],
+          ["徳島県"],["香川県"],["愛媛県"],["高知県"],["福岡県"],
+          ["佐賀県"],["長崎県"],["熊本県"],["大分県"],["宮崎県"],
+          ["鹿児島県"],["沖縄県"]
+        ], include_blank: "都道府県を選択して下さい" %>
+    </div>
+
+    <div class="note">
+      <%= form.label :"ペットの説明やその他記載" %>
+      <%= form.text_area :note %>
+    </div>
   </div>
-
-  <div class="pet_name">
-    <%= form.label :"名前" %>
-    <%= form.text_field :pet_name %>
-  </div>
-
-  <div class="select">
-    <p>性別を選択してください</p>
-    <%= form.label :"オス" %>
-    <%= form.radio_button :sex, 0 %>
-    <%= form.label :"メス" %>
-    <%= form.radio_button :sex, 1 %>
-  </div>
-
-  <div class="select">
-    <p>以下から条件に合う年齢を選択してください</p>
-    <%= form.select :age, 
-      [["0~3ヶ月", 0], ["3~6ヶ月", 1], ["6ヶ月~1歳", 2], ["1歳~1歳半", 3],
-      ["1歳半~2歳", 4],["2歳~3歳", 5],["3歳~4歳", 6], ["4歳~5歳", 7],
-      ["5歳~6歳", 8], ["6歳~7歳", 9], ["8歳~9歳", 10], ["9歳~10歳", 11],
-      ["10歳以上", 12]
-      ], include_blank: "年齢を選択して下さい"
-    %>
-  </div>
-
-  <div class="select">
-    <p>ワクチンの接種状況を選択してください</p>
-    <%= form.label :"接種済み" %>
-    <%= form.radio_button :vaccinated, 0 %>
-    <%= form.label :"未接種" %>
-    <%= form.radio_button :vaccinated, 1 %>
-  </div>
-
-  <div class="select">
-    <p>去勢手術の状況を選択してください</p>
-    <%= form.label :"去勢済み" %>
-    <%= form.radio_button :spayed_neutered, 0 %>
-    <%= form.label :"未去勢" %>
-    <%= form.radio_button :spayed_neutered, 1 %>
-  </div>
-
-  <div class="select">
-        <p>以下から都道府県を選択してください</p>
-        <%= form.select :prefecture, 
-          [["北海道", 0],["青森", 1],["岩手", 2],["宮城", 3],["秋田", 4],
-          ["山形", 5],["福島", 6],["茨城", 7],["栃木", 8],["群馬", 9],
-          ["埼玉", 10],["千葉", 11],["東京", 12],["神奈川", 13],["新潟", 14],
-          ["富山", 15],["石川", 16],["福井", 17],["山梨", 18],["長野", 19],
-          ["岐阜", 20],["静岡", 21],["愛知", 22],["三重", 23],["滋賀", 24],
-          ["京都", 25],["大阪", 26],["兵庫", 27],["奈良", 28],["和歌山", 29],
-          ["鳥取", 30],["島根", 31],["岡山", 32],["広島", 33],["山口", 34],
-          ["徳島", 35],["香川", 36],["愛媛", 37],["高知", 38],["福岡", 39],
-          ["佐賀", 40],["長崎", 41],["熊本", 42],["大分", 43],["宮崎", 44],
-          ["鹿児島", 45],["沖縄", 46]
-          ], include_blank: "都道府県を選択して下さい"
-        %>
-      </div>
-
-  <div class="note">
-    <%= form.label :"ペットの説明やその他記載" %>
-    <%= form.text_area :note %>
-  </div>
-
 
   <%= form.submit "情報を上書きする"%>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_24_002118) do
+ActiveRecord::Schema.define(version: 2023_09_25_051829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 2023_09_24_002118) do
   end
 
   create_table "animals", force: :cascade do |t|
-    t.integer "pet_type", null: false
+    t.string "pet_type", null: false
     t.string "pet_name", null: false
-    t.integer "sex", null: false
-    t.integer "age", null: false
-    t.integer "vaccinated", null: false
-    t.integer "spayed_neutered", null: false
+    t.string "sex", null: false
+    t.string "age", null: false
+    t.string "vaccinated", null: false
+    t.string "spayed_neutered", null: false
     t.text "note", null: false
-    t.integer "prefecture", null: false
+    t.string "prefecture", null: false
     t.integer "trading_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -78,12 +78,12 @@ ActiveRecord::Schema.define(version: 2023_09_24_002118) do
     t.string "first_name", null: false
     t.string "nick_name", null: false
     t.string "postal_code", null: false
-    t.integer "prefecture", null: false
+    t.string "prefecture", null: false
     t.string "municipality", null: false
     t.string "street_address", null: false
     t.integer "movable_range", null: false
-    t.integer "sex", null: false
-    t.integer "occupation", null: false
+    t.string "sex", null: false
+    t.string "occupation", null: false
     t.string "phone_number", null: false
     t.boolean "admin", default: false, null: false
     t.string "icon", null: false
