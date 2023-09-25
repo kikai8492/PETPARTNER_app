@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_22_043523) do
+ActiveRecord::Schema.define(version: 2023_09_25_051829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,19 +44,59 @@ ActiveRecord::Schema.define(version: 2023_09_22_043523) do
   end
 
   create_table "animals", force: :cascade do |t|
-    t.integer "pet_type", null: false
+    t.string "pet_type", null: false
     t.string "pet_name", null: false
-    t.integer "sex", null: false
-    t.integer "age", null: false
-    t.integer "vaccinated", null: false
-    t.integer "spayed_neutered", null: false
+    t.string "sex", null: false
+    t.string "age", null: false
+    t.string "vaccinated", null: false
+    t.string "spayed_neutered", null: false
     t.text "note", null: false
-    t.integer "prefecture", null: false
+    t.string "prefecture", null: false
     t.integer "trading_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_animals_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "animal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["animal_id"], name: "index_favorites_on_animal_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "nick_name", null: false
+    t.string "postal_code", null: false
+    t.string "prefecture", null: false
+    t.string "municipality", null: false
+    t.string "street_address", null: false
+    t.integer "movable_range", null: false
+    t.string "sex", null: false
+    t.string "occupation", null: false
+    t.string "phone_number", null: false
+    t.boolean "admin", default: false, null: false
+    t.string "icon", null: false
+    t.text "self_introduction", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "animals", "users"
+  add_foreign_key "favorites", "animals"
+  add_foreign_key "favorites", "users"
 end

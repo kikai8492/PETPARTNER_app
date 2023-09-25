@@ -1,0 +1,12 @@
+<h1>お気に入り一覧</h1>
+<% if @favorite_list.present? %>
+  <% @favorite_list.each do |animal|%>
+    <%= link_to animal_path(animal) do %>
+      <%= image_tag url_for(animal.images.first), size: "200x200" if animal.images.first.present? %>
+    <% end %>
+  <% end %>
+<% else %>
+  <h1>お気に入り登録なし</h1>
+<% end %>
+
+<%= link_to "戻る", user_path(current_user)%>

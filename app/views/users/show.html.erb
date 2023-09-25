@@ -1,0 +1,71 @@
+<h1><%= current_user.nick_name%>のページ</h1>
+
+<%= image_tag current_user.icon.url,width: "100rem", height: "100rem" %>
+
+
+<p>苗字:<%= current_user.last_name%></p>
+
+<p>名前:<%= current_user.first_name%></p>
+
+<p>ユーザーネーム:<%= current_user.nick_name%></p>
+
+<p>電話番号:<%= current_user.phone_number%></p>
+
+<p>メールアドレス:<%= current_user.email%></p>
+
+<p>郵便番号:<%= current_user.postal_code%></p>
+
+<p>都道府県:<%= current_user.prefecture %>
+
+<p>市区町村:<%= current_user.municipality%></p>
+
+<p>以降の住所:<%= current_user.street_address%></p>
+
+<% if current_user.movable_range == 0%>
+  <p>移動可能範囲:0~50km</p>
+<% elsif current_user.movable_range == 1%>
+  <p>移動可能範囲:50~100km</p>
+<% elsif current_user.movable_range == 2%>
+  <p>移動可能範囲:100~200km</p>
+<% else %>
+  <p>移動可能範囲:それ以上可能</p>
+<% end %>
+
+<%= current_user.sex%>
+
+<%= current_user.occupation %>
+
+
+<p>自己紹介:<%= current_user.self_introduction%></p>
+
+<%= link_to "戻る", animals_path%>
+
+
+<%= link_to "掲載中の動物の情報を見る", users_path%>
+
+<%= link_to "お気に入り動物一覧を見る", favorites_path, method: :get%>
+
+
+<%= link_to "編集する", edit_user_registration_path%>
+<%= link_to "ログアウトする", destroy_user_session_path, method: :delete%>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const inputElement = document.getElementById('icon_input');
+    const previewElement = document.getElementById('icon_preview');
+
+    inputElement.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          previewElement.setAttribute('src', e.target.result);
+          previewElement.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewElement.style.display = 'none';
+      }
+    });
+  });
+</script>

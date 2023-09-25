@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    models:
+    animal: 動物
+    user: ユーザー
+    attributes:
+      animal:
+        pet_type: 動物の種類
+        pet_name: 動物の名前
+        sex: 性別
+        vaccinated: ワクチンの接種状況
+        spayed_neutered: 避妊手術の有無
+        age: 年齢
+        note: 備考
+        prefecture: 都道府県
+        images: 画像
+      user:
+        first_name: 名前
+        last_name: 苗字
+        nick_name: ユーザーネーム
+        postal_code: 郵便番号
+        prefecture: 都道府県
+        municipality: 市区町村
+        street_address: 以降の住所
+        movable_range: 移動範囲
+        phone_number: 電話番号
+        email: メールアドレス
+        password: パスワード
+        sex: 性別
+        occupation: 職業
+        self_introduction: 自己紹介

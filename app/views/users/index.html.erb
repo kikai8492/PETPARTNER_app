@@ -1,0 +1,15 @@
+<h1><%= current_user.nick_name%>の掲載中の動物一覧<h1>
+
+<% if current_user.animals.present?%>
+  <% current_user.animals.each do |animal|%>
+        <tr>
+          <td>
+            <%= link_to animal_path(animal) do %>
+              <%= image_tag url_for(animal.images.first), size: "200x200" if animal.images.first.present? %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+<% else %>
+  <p>掲載されていません</p>
+<% end %>
