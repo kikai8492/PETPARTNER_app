@@ -19,6 +19,8 @@
 
 <p>説明:<%= @animal.note%></p>
 
+<p>投稿したユーザー:<%= @animal.user.nick_name%></p>
+
 <% if @animal.user == current_user%>
   <%= link_to "動物の情報を編集する", edit_animal_path %>
   <%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"}%>
@@ -38,3 +40,7 @@
 <% end %>
 
 <%= link_to "一覧画面に戻る", animals_path%>
+
+<script>
+
+</script>

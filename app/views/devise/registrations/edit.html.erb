@@ -36,21 +36,21 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :パスワード %> <i>(パスワードを変更する場合は新しいパスワードを、そのままの場合は既存のパスワードを入力してください)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> 文字以上</em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :確認用パスワードを入力してください %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :現在のパスワード %> <i>(パスワードを変更した場合は以前のパスワードを、そのままの場合は既存のパスワードを入力してください)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
@@ -120,21 +120,17 @@
 <%= link_to "Back", :back %>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const inputElement = document.getElementById('icon_input');
-    const previewElement = document.getElementById('icon_preview');
-
-    inputElement.addEventListener('change', function() {
+  $(document).ready(function() {
+    $('#icon_input').on('change', function() {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-          previewElement.setAttribute('src', e.target.result);
-          previewElement.style.display = 'block';
+          $('#icon_preview').attr('src', e.target.result).show();
         };
         reader.readAsDataURL(file);
       } else {
-        previewElement.style.display = 'none';
+        $('#icon_preview').hide();
       }
     });
   });

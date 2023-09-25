@@ -110,22 +110,24 @@
 <%= render "devise/shared/links" %>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const inputElement = document.getElementById('icon_input');
-    const previewElement = document.getElementById('icon_preview');
-
-    inputElement.addEventListener('change', function() {
+  $(document).ready(function() {
+    $('#icon_input').on('change', function() {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-          previewElement.setAttribute('src', e.target.result);
-          previewElement.style.display = 'block';
+          $('#icon_preview').attr('src', e.target.result).show();
         };
         reader.readAsDataURL(file);
       } else {
-        previewElement.style.display = 'none';
+        $('#icon_preview').hide();
       }
     });
   });
 </script>
+
+
+
+
+
+
