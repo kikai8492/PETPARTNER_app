@@ -24,16 +24,17 @@
   <%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"}%>
 <% end %>
 
+<p>お気に入り登録人数:<%= @animal.favorites.count%>人</p>
 <% if user_signed_in? && @animal.user != current_user%>
-  <%= link_to "この動物に応募する" %>
+  <% if current_user.favorited_by?(@animal.id)%>
+    <div><%= link_to "❤️", animal_favorite_path(@animal), method: :delete%></div>
+  <% else %>
+    <div><%= link_to "♡", animal_favorites_path(@animal), method: :post%></div>
+  <% end %>
 <% end %>
 
 <% if user_signed_in? && @animal.user != current_user%>
-  <% if current_user.favorited_by?(@animal.id)%>
-  <div><%= link_to "いいねを取り消す", animal_favorite_path(@animal), method: :delete%><%= @animal.favorites.count%></div>
-  <% else %>
-    <div><%= link_to "いいね", animal_favorites_path(@animal), method: :post%><%= @animal.favorites.count%></div>
-  <% end %>
+  <%= link_to "この動物に応募する" %>
 <% end %>
 
 <%= link_to "一覧画面に戻る", animals_path%>

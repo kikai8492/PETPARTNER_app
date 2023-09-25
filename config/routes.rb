@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
   resource :favorites, only: [:show]
   resources :users, only: [:index, :show]
+  resources :userinfos, only: [:show]
   root 'animals#index'
 end
