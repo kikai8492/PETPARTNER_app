@@ -1,0 +1,26 @@
+<h4><%# @user.nick_name%>さんとのチャットルーム</h4>
+
+<% @entries.each do |e| %>
+  <%= image_tag e.user.icon.url, size:50 %>
+  <%= e.user.nick_name %>
+<% end %>
+
+<% if @messages.present? %>
+  <% @messages.each do |m|%>
+  <%= image_tag m.user.icon.url, size:50%>
+  <%= m.message%><br>
+  <% if m.image.present? %>
+    <%= image_tag m.image.url, size:100 %>
+  <% end %>
+  <br>
+  <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
+<% end %>
+<% end %>
+
+<%= form_for @message do |f| %>
+  <%= f.text_field :message, placeholder: "メッセージを入力して下さい"%>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.file_field :image%>
+  <%= f.submit "送信" %>
+<% end %>
+<%= link_to "一覧画面へ戻る", animals_path%>

@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :userinfos, only: [:show]
   root 'animals#index'
+  resources :chats, only: [:create]
+  resources :rooms, only: [:create, :show]
 end
