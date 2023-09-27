@@ -1,6 +1,8 @@
-<h1><%= @user.name%>のプロフィール</h1>
+<h1><%= @user.nick_name%>のプロフィール</h1>
 
 <p>ニックネーム:<%= @user.nick_name%></p>
+
+<p>都道府県:<%= @user.prefecture %></p>
 
 <% if @user.movable_range == 0%>
   <p>移動可能範囲:0~50km</p>

@@ -3,11 +3,19 @@ class ChatsController < ApplicationController
 
   def create
     if Entry.where(user_id: current_user.id, room_id: params[:chat][:room_id]).present?
-      @chat = Chat.create(chat_params.merge(user_id: current_user.id))
+      @chat = Chat.new(chat_params.merge(user_id: current_user.id))
+      if @chat.save
+        redirect_to room_path(@chat.room_id)
+      else
+        @room = Room.find(params[:chat][:room_id])
+        @messages = @room.chats
+        @animal = @room.animal
+        @entries = @room.entries
+        render "rooms/show"
+      end
     else
-      flash[:alert] = "メッセージ送信に失敗しました"
+      redirect_to animals_path, alart: "チャットルームが存在しません"
     end
-    redirect_to "/rooms/#{@chat.room_id}"
   end
 
   private

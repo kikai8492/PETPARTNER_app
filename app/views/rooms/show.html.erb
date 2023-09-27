@@ -1,3 +1,11 @@
+<% if @chat.errors.any? %>
+  <ul>
+    <% @chat.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h4><%= @animal.pet_name %>の取引チャットルーム</h4>
 
 <% @entries.each do |e| %>
@@ -17,10 +25,14 @@
 <% end %>
 <% end %>
 
-<%= form_for @message do |f| %>
-  <%= f.text_field :message, placeholder: "メッセージを入力して下さい"%>
+<%= form_for @chat do |f| %>
+  <%= f.text_field :message, placeholder: "メッセージを入力"%>
   <%= f.hidden_field :room_id, value: @room.id %>
-  <%= f.file_field :image%>
+  <%= f.file_field :image, id: 'image_input' %>
+
+  <br>
+  <img id="image_preview" src="#" alt="Image Preview" style="display: none; width: 5rem; height: 5rem;">
+
   <%= f.submit "送信", class: "btn btn-success" %>
 <% end %>
 
@@ -28,5 +40,21 @@
   <%= button_to "取引を中止する", destroy_chat_animal_path(@animal), method: :delete, data: { confirm: "本当に取引を中止しますか？" },class:"btn btn-danger" %>
 <% end %>
 
+<%= link_to "取引相手の情報を見る", userinfo_path(@room.entries.where.not(user_id: current_user.id).first.user_id),class: "btn btn-info"%>
+
 <%= link_to "一覧画面へ戻る", animals_path,class:"btn btn-primary"%>
 
+<a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="btn btn-dark">webでビデオ通話をする</a>
+
+<script>
+  $(document).on('turbolinks:load', function(){
+  $('#image_input').off('change').on('change', function(e){ 
+    var reader = new FileReader();
+    reader.onload = function(e){
+      $("#image_preview").attr('src', e.target.result);
+      $("#image_preview").show();
+    }
+    reader.readAsDataURL(this.files[0]);
+  });
+});
+</script>

@@ -47,7 +47,10 @@
       <%= fields_for @entry do |e|%>
         <%= e.hidden_field :user_id, value: @user.id %>
       <% end %>
-      <%= f.submit "この動物に応募する" %>
+
+      <% if @animal.trading_status == 0%>
+        <%= f.submit "この動物に応募する" %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

@@ -29,3 +29,5 @@ ja:
         sex: 性別
         occupation: 職業
         self_introduction: 自己紹介
+      chat: 
+        message: メッセージ

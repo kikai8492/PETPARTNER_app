@@ -82,9 +82,11 @@ class AnimalsController < ApplicationController
     @animal = Animal.find(params[:id])
 
     if Room.find_by(animal_id: @animal.id).nil?
+
+      # お気に入り登録せずに応募するを押してチャットを開始する場合、強制的にお気に入り登録を行う
       favorite = Favorite.find_or_initialize_by(user_id: current_user.id, animal_id: @animal.id)
 
-      unless favorite.persisted?
+      unless favorite.persisted? # すでにお気に入り登録されているか確認
         favorite.save
         flash[:favorite] = "お気に入りに登録しました"
       end
