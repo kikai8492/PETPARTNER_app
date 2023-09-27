@@ -1,4 +1,4 @@
-<h4><%# @user.nick_name%>さんとのチャットルーム</h4>
+<h4><%= @animal.pet_name %>の取引チャットルーム</h4>
 
 <% @entries.each do |e| %>
   <%= image_tag e.user.icon.url, size:50 %>
@@ -21,6 +21,12 @@
   <%= f.text_field :message, placeholder: "メッセージを入力して下さい"%>
   <%= f.hidden_field :room_id, value: @room.id %>
   <%= f.file_field :image%>
-  <%= f.submit "送信" %>
+  <%= f.submit "送信", class: "btn btn-success" %>
 <% end %>
-<%= link_to "一覧画面へ戻る", animals_path%>
+
+<% if user_signed_in? && current_user == @animal.user %>
+  <%= button_to "取引を中止する", destroy_chat_animal_path(@animal), method: :delete, data: { confirm: "本当に取引を中止しますか？" },class:"btn btn-danger" %>
+<% end %>
+
+<%= link_to "一覧画面へ戻る", animals_path,class:"btn btn-primary"%>
+
