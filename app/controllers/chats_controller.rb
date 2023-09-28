@@ -18,6 +18,12 @@ class ChatsController < ApplicationController
     end
   end
 
+
+
+  
+
+
+
   private
 
   def chat_params

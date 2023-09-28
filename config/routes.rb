@@ -14,5 +14,9 @@ Rails.application.routes.draw do
   resources :userinfos, only: [:show]
   root 'animals#index'
   resources :chats, only: [:create, :destroy]
-  resources :rooms, only: [:create, :show]
+  resources :rooms, only: [:create, :show] do
+    member do
+      get :suggest_meeting_place
+    end
+  end
 end

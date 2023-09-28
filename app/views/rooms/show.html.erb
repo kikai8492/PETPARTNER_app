@@ -27,6 +27,12 @@
 
 <%= form_for @chat do |f| %>
   <%= f.text_field :message, placeholder: "メッセージを入力"%>
+
+  
+  <%= text_field_tag :meeting_place_url, nil, placeholder: "取引場所のURL", id: "meeting-place-url" %>
+  <!-- "自動で取引場所を決める"ボタンを追加 -->
+  <%= button_tag "自動で取引場所を決める", type: "button", id: "auto-select-place" %>
+
   <%= f.hidden_field :room_id, value: @room.id %>
   <%= f.file_field :image, id: 'image_input' %>
 
@@ -47,14 +53,47 @@
 <a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="btn btn-dark">webでビデオ通話をする</a>
 
 <script>
-  $(document).on('turbolinks:load', function(){
-  $('#image_input').off('change').on('change', function(e){ 
-    var reader = new FileReader();
-    reader.onload = function(e){
-      $("#image_preview").attr('src', e.target.result);
-      $("#image_preview").show();
+  document.addEventListener('turbolinks:load', function() {
+    // Check if jQuery is loaded
+    if (typeof $ === 'undefined') {
+      console.error('jQuery is not loaded');
+      return;
     }
-    reader.readAsDataURL(this.files[0]);
+
+    $('#image_input').off('change').on('change', function(e) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $("#image_preview").attr('src', e.target.result);
+        $("#image_preview").show();
+      }
+      reader.readAsDataURL(this.files[0]);
+    });
+
+    const roomId = <%= @room.id %>;
+    const selectPlaceButton = document.getElementById('auto-select-place');
+    const meetingPlaceURLInput = document.getElementById('meeting-place-url');
+
+    selectPlaceButton.addEventListener('click', function() {
+      fetch(`/rooms/${roomId}/suggest_meeting_place`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.map_url) {
+            meetingPlaceURLInput.value = data.map_url;
+            alert('取引場所のURLを入力しました。');
+          } else {
+            alert('取引場所のURLを取得できませんでした。');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('エラーが発生しました。再度試してください。');
+        });
+    });
   });
-});
 </script>
+
+
+
+
+
+

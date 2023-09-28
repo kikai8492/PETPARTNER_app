@@ -29,4 +29,31 @@ class User < ApplicationRecord
   def favorited_by?(animal_id)
     favorites.where(animal_id: animal_id).exists?
   end
+
+  def actual_movable_distance
+    if movable_range == 0
+      50
+    elsif movable_range == 1
+      100
+    elsif movable_range == 2
+      200
+    else
+      Float::INFINITY
+    end
+  end
+
+  # def coordinates
+  #   results = Geocoder.search(full_address)
+  #   if results.present?
+  #     lat = results.first.latitude
+  #     lon = results.first.longitude
+  #     { latitude: lat, longitude: lon }
+  #   else
+  #     nil
+  #   end
+  # end
+
+  # def full_address
+  #   [postal_code, prefecture, municipality, street_address].compact.join(', ')
+  # end
 end
