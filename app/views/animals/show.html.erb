@@ -35,12 +35,25 @@
   <% end %>
 <% end %>
 
+<% if current_user == @animal.user && @animal.trading_status == 1 %>
+  <%= link_to "取引画面へ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
+<% end %>
+
 <% if user_signed_in? && @animal.user != current_user%>
-  <%= link_to "この動物に応募する" %>
+  <% if @isRoom == true %>
+    <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+  <% else %>
+    <%= form_for @room, url: start_chat_animal_path(@animal) do |f|%> <!-- start_chatのルートを指定する必要があります -->
+      <%= fields_for @entry do |e|%>
+        <%= e.hidden_field :user_id, value: @user.id %>
+      <% end %>
+
+      <% if @animal.trading_status == 0%>
+        <%= f.submit "この動物に応募する" %>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>
 
 <%= link_to "一覧画面に戻る", animals_path%>
 
-<script>
-
-</script>

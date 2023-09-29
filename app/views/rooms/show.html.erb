@@ -1,0 +1,99 @@
+<% if @chat.errors.any? %>
+  <ul>
+    <% @chat.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h4><%= @animal.pet_name %>の取引チャットルーム</h4>
+
+<% @entries.each do |e| %>
+  <%= image_tag e.user.icon.url, size:50 %>
+  <%= e.user.nick_name %>
+<% end %>
+
+<% if @messages.present? %>
+  <% @messages.each do |m|%>
+  <%= image_tag m.user.icon.url, size:50%>
+  <%= m.message%><br>
+  <% if m.image.present? %>
+    <%= image_tag m.image.url, size:100 %>
+  <% end %>
+  <br>
+  <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
+<% end %>
+<% end %>
+
+<%= form_for @chat do |f| %>
+  <%= f.text_field :message, placeholder: "メッセージを入力"%>
+
+  
+  <%= text_field_tag :meeting_place_url, nil, placeholder: "取引場所のURL", id: "meeting-place-url" %>
+  <!-- "自動で取引場所を決める"ボタンを追加 -->
+  <%= button_tag "自動で取引場所を決める", type: "button", id: "auto-select-place" %>
+
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.file_field :image, id: 'image_input' %>
+
+  <br>
+  <img id="image_preview" src="#" alt="Image Preview" style="display: none; width: 5rem; height: 5rem;">
+
+  <%= f.submit "送信", class: "btn btn-success" %>
+<% end %>
+
+<% if user_signed_in? && current_user == @animal.user %>
+  <%= button_to "取引を中止する", destroy_chat_animal_path(@animal), method: :delete, data: { confirm: "本当に取引を中止しますか？" },class:"btn btn-danger" %>
+<% end %>
+
+<%= link_to "取引相手の情報を見る", userinfo_path(@room.entries.where.not(user_id: current_user.id).first.user_id),class: "btn btn-info"%>
+
+<%= link_to "一覧画面へ戻る", animals_path,class:"btn btn-primary"%>
+
+<a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="btn btn-dark">webでビデオ通話をする</a>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    // Check if jQuery is loaded
+    if (typeof $ === 'undefined') {
+      console.error('jQuery is not loaded');
+      return;
+    }
+
+    $('#image_input').off('change').on('change', function(e) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $("#image_preview").attr('src', e.target.result);
+        $("#image_preview").show();
+      }
+      reader.readAsDataURL(this.files[0]);
+    });
+
+    const roomId = <%= @room.id %>;
+    const selectPlaceButton = document.getElementById('auto-select-place');
+    const meetingPlaceURLInput = document.getElementById('meeting-place-url');
+
+    selectPlaceButton.addEventListener('click', function() {
+      fetch(`/rooms/${roomId}/suggest_meeting_place`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.map_url) {
+            meetingPlaceURLInput.value = data.map_url;
+            alert('取引場所のURLを入力しました。');
+          } else {
+            alert('取引場所のURLを取得できませんでした。');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('エラーが発生しました。再度試してください。');
+        });
+    });
+  });
+</script>
+
+
+
+
+
+
