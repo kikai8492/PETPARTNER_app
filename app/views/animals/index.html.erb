@@ -74,7 +74,7 @@
               selectedItems.forEach(function(item) {
                   let label = document.querySelector(`label[for="${item.id}"]`);
                   if (label) {
-                      selectedNames.push(label.textContent);
+                    selectedNames.push(label.textContent);
                   }
               });
 
@@ -85,6 +85,11 @@
     </div>
   <%= form.submit "検索する"%>
   <% end %>
+
+  <% if current_user.try(:admin?) %>
+    <%= link_to '管理者ログイン', rails_admin_path %>
+  <% end %>
+
 </header>
 
 <body>
