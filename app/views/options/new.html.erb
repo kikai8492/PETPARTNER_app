@@ -13,6 +13,9 @@
 
   <header>
     <h1>飼い主チェッカー</h1>
+    <% unless current_user.options.exists?%>
+      <h4>アプリを使用するにあたり、はじめにあなたの飼い主としての適正を診断します</h4>
+    <% end %>
   </header>
 
   <body>
