@@ -20,4 +20,6 @@ Rails.application.routes.draw do
       get :suggest_meeting_place
     end
   end
+
+  resources :options, only: [:new, :create, :show]
 end

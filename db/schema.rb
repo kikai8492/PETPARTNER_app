@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_26_065534) do
+ActiveRecord::Schema.define(version: 2023_09_29_074526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,29 @@ ActiveRecord::Schema.define(version: 2023_09_26_065534) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "options", force: :cascade do |t|
+    t.integer "answer1", null: false
+    t.integer "answer2", null: false
+    t.integer "answer3", null: false
+    t.integer "answer4", null: false
+    t.integer "answer5", null: false
+    t.integer "answer6", null: false
+    t.integer "answer7", null: false
+    t.integer "answer8", null: false
+    t.integer "answer9", null: false
+    t.integer "answer10", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_options_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "query", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -130,5 +153,6 @@ ActiveRecord::Schema.define(version: 2023_09_26_065534) do
   add_foreign_key "entries", "users"
   add_foreign_key "favorites", "animals"
   add_foreign_key "favorites", "users"
+  add_foreign_key "options", "users"
   add_foreign_key "rooms", "animals"
 end

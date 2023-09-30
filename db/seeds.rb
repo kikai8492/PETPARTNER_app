@@ -5,22 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(
-  icon: "子犬2.jpeg",
-  last_name: "鬼海",
-  first_name: "脩斗",
-  nick_name: "kikiai",
-  phone_number: "08039522795",
-  email: "yysskikai04@icloud.com",
-  password: "PKPKkikai321",
-  password_confirmation: "PKPKkikai321",
-  postal_code: "8620913",
-  prefecture: "熊本県", 
-  municipality: "熊本市東区尾ノ上",
-  street_address: "4丁目12-60 201号",
-  movable_range: 0,
-  sex: "男性",
-  occupation: "会社員",
-  self_introduction: "よろしくお願いします。",
-  admin: true
-)
+
+
+questions = [
+  "質問1:あなたは毎日一定の時間、ペットの世話をすることができますか？",
+  "質問2:あなたはペットの世話をするために、毎月一定の金額を費やすことができますか？(犬の場合は1ヶ月約1万円、猫の場合は1ヶ月約5000円)",
+  "質問3:ペットが病気や怪我をした際、直ちに動物病院に連れて行くなど緊急の対応ができますか？",
+  "質問4:あなたまたは家族がアレルギーの症状を持っていませんか？",
+  "質問5:あなたの住んでいる場所でペットを飼うことは許されていますか？",
+  "質問6:定期的に散歩などの運動やふれあいの時間をペットと共有できますか？",
+  "質問7:定期的に転勤や引っ越しをする頻度は少なめですか？",
+  "質問8:長期的なパートナーとして、最後まで世話する覚悟ができていますか？（猫や犬の寿命はおおよそ10年から20年程度です）", 
+  "質問9:犬や猫の特有の行動や性格を学び、理解しようとする意欲がありますか？",
+  "質問10:必要に応じて、ペットのしつけや訓練を行うことができますか？"
+]
+
+questions.each do |question|
+  Question.create!(query: question)
+end
