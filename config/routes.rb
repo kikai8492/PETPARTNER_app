@@ -28,4 +28,6 @@ Rails.application.routes.draw do
 
   resources :options, only: [:index, :new, :create, :show]
   resources :checker_show, only: [:show]
+  resources :trading_partner_checks, only: [:show]
+  resources :trading_partner_check_mores, only: [:show]
 end
