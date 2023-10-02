@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy]
     member do
       post 'start_chat'
-      delete 'destroy_chat'
+      delete 'trading_destroy'
     end
   end
   resource :favorites, only: [:show]
@@ -26,5 +26,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :options, only: [:new, :create, :show]
+  resources :options, only: [:index, :new, :create, :show]
+  resources :checker_show, only: [:show]
 end

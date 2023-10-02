@@ -1,0 +1,15 @@
+<h1><%= current_user.nick_name%>の飼い主チェッカー履歴一覧</h1>
+
+<h2><%= current_user.nick_name%>の平均適正は以下の通りです</h2>
+<h3>平均適正:<%= @average_score %>%</h3>
+
+<% @options.each do |option|%>
+  <tr>
+    <td>
+      <p><%= option.created_at.strftime("%Y-%m-%d %H:%M")%>の回答</p>
+    </td>
+    <td>
+      <%=link_to "詳細を見る",checker_show_path(option)%>
+    </td>
+  </tr>
+<% end %>
