@@ -77,8 +77,6 @@ class OptionsController < ApplicationController
               temperature: 0.7,
           })
 
-          # puts "ChatGPT Response: #{response.inspect}"
-      # ChatGPTからの最新のレスポンスを@feedbackに格納
       @feedback = response["choices"][0]["message"]["content"]
   
   end
