@@ -108,7 +108,7 @@ class AnimalsController < ApplicationController
     end
   end
 
-  def destroy_chat
+  def trading_destroy
     @animal = Animal.find(params[:id])
     
     if current_user != @animal.user

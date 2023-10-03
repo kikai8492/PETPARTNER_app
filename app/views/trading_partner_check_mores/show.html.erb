@@ -1,0 +1,133 @@
+<h1>飼い主適正<%= @score%>%</h1>
+
+<body>
+  <div class="select">
+    <h4>質問1:あなたは毎日一定の時間、ペットの世話をすることができますか？</h4>
+    <% if @option.answer1 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer1 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer1 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問2:あなたはペットの世話をするために、毎月一定の金額を費やすことができますか？(犬の場合は1ヶ月約1万円、猫の場合は1ヶ月約5000円)</h4>
+    <% if @option.answer2 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer2 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer2 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問3:ペットが病気や怪我をした際、直ちに動物病院に連れて行くなど緊急の対応ができますか？</h4>
+    <% if @option.answer3 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer3 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer3 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問4:あなたまたは家族がアレルギーの症状を持っていませんか？</h4>
+    <% if @option.answer4 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer4 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer4 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問5:あなたの住んでいる場所でペットを飼うことは許されていますか？</h4>
+    <% if @option.answer5 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer5 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer5 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問6:定期的に散歩などの運動やふれあいの時間をペットと共有できますか？</h4>
+    <% if @option.answer6 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer6 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer6 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問7:定期的に転勤や引っ越しをする頻度は少なめですか？</h4>
+    <% if @option.answer7 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer7 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer7 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問8:長期的なパートナーとして、最後まで世話する覚悟ができていますか？（猫や犬の寿命はおおよそ10年から20年程度です）</h4>
+    <% if @option.answer8 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer8 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer8 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問9:犬や猫の特有の行動や性格を学び、理解しようとする意欲がありますか？</h4>
+    <% if @option.answer9 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer9 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer9 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+
+  <div class="select">
+    <h4>質問10:必要に応じて、ペットのしつけや訓練を行うことができますか？</h4>
+    <% if @option.answer10 == 10%>
+      <p>当てはまる</p>
+    <% elsif @option.answer10 == 8%>
+      <p>やや当てはまる</p>
+    <% elsif @option.answer10 == 5%>
+      <p>やや当てはまらない</p>
+    <% else %>
+      <p>当てはまらない</p>
+    <% end %>
+  </div>
+</body>

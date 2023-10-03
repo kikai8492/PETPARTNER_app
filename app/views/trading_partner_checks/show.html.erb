@@ -1,0 +1,14 @@
+<h1><%= @user.nick_name%>の飼い主チェッカー履歴一覧</h1>
+
+<h2><%= @user.nick_name%>の平均スコア:<%= @average_score %>%</h2>
+
+<tr>
+  <%@user_options.each do |option|%>
+    <td>
+      <p>回答日<%= option.created_at.strftime("%Y-%m-%d %H:%M")%></p>
+    </td>
+    <td>
+      <%= link_to "詳細を確認する", trading_partner_check_more_path(option)%>
+    </td>
+  <%end%>
+</tr>

@@ -90,6 +90,10 @@
     <%= link_to '管理者ログイン', rails_admin_path %>
   <% end %>
 
+  <% if user_signed_in?%>
+    <%= link_to "飼い主チェッカー", new_option_path%>
+  <% end %>
+
 </header>
 
 <body>
