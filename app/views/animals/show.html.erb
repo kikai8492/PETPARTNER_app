@@ -1,4 +1,13 @@
 <h1><%= @animal.pet_name%>のページ<h1>
+
+
+<% if @animal.trading_status == 1 && current_user != @animal.user%>
+  <h2><%= @animal.pet_name%>は現在取引中です。</h2>
+<% end %>
+
+<% if @animal.trading_status == 2 && current_user != @animal.user%>
+  <h2><%= @animal.pet_name%>の里親は無事に見つかりましたので応募できません</h2>
+<% end %>
 <%if @animal.images.attached? %>
   <% @animal.images.each do |image|%>
     <%= image_tag image, size:"200x200" %>
@@ -35,7 +44,7 @@
   <% end %>
 <% end %>
 
-<% if current_user == @animal.user && @animal.trading_status == 1 %>
+<% if current_user == @animal.user %>
   <%= link_to "取引画面へ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
 <% end %>
 

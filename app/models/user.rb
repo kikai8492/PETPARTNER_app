@@ -26,6 +26,7 @@ class User < ApplicationRecord
   validates :sex, presence: true
   validates :occupation, presence: true
   validates :self_introduction, presence: true
+  validates :terms_of_use, presence: true
 
   # 以下のように定義することで、animals/showでユーザーがお気に入り登録した動物を取得できるようになる。
   def favorited_by?(animal_id)

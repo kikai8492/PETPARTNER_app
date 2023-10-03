@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     member do
       post 'start_chat'
       delete 'trading_destroy'
+      # post 'end_trading'
     end
   end
+
   resource :favorites, only: [:show]
   resources :users, only: [:index, :show]
   resources :userinfos, only: [:show]
@@ -30,4 +32,5 @@ Rails.application.routes.draw do
   resources :checker_show, only: [:show]
   resources :trading_partner_checks, only: [:show]
   resources :trading_partner_check_mores, only: [:show]
+  resources :trading_evaluations, only: [:index, :new, :create, :show]
 end

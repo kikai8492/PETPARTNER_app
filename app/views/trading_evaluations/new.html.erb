@@ -1,0 +1,34 @@
+<%= form_with(model: @trading_evaluation, local: true, url:trading_evaluations_path, method: :post)  do |trading_evaluation|%>
+
+  <% if @animal.user == current_user%>
+    <h3><%= @animal.pet_name%>を<%= @trading_partner.nick_name%>さんへ譲渡しましたか？</h3>
+    <%# trading_evaluation.check_box :get_animal,"譲渡しました"%>
+    <%= trading_evaluation.label :get_animal, "譲渡した:" %>
+    <%= trading_evaluation.check_box :get_animal,{},  "譲渡済み", ""%>
+  <% else %>
+    <h3><%= @animal.pet_name%>を<%= @trading_partner.nick_name%>さんから引き取りましたか？</h3>
+    <%# trading_evaluation.check_box :get_animal,"引き取りました"%>
+    <%= trading_evaluation.label :get_animal, "引き取った:" %>
+    <%= trading_evaluation.check_box :get_animal,{},  "引き取り済み", ""%>
+  <% end %>
+
+  <h1><%= @trading_partner.nick_name%>さんへの評価を行ってください</h1>
+
+  <h3>評価</h3>
+
+  <%= trading_evaluation.radio_button :score, :"良かった"%>
+  <%= trading_evaluation.label :score, "良かった"%>
+
+  <%= trading_evaluation.radio_button :score, :"悪かった"%>
+  <%= trading_evaluation.label :score, "悪かった"%>
+
+  <h3>評価コメント</h3>
+  <%= trading_evaluation.text_field :feedback%>
+
+  <%= trading_evaluation.hidden_field :user_id, value: current_user.id %>
+  <%= trading_evaluation.hidden_field :receive_user_id, value: @trading_partner.id %>
+
+  <%= trading_evaluation.hidden_field :room_id, value: @room.id %>
+
+  <%= trading_evaluation.submit "評価する" %>
+<% end %>

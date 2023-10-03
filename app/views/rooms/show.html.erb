@@ -42,7 +42,7 @@
   <%= f.submit "送信", class: "btn btn-success" %>
 <% end %>
 
-<% if user_signed_in? && current_user == @animal.user %>
+<% if user_signed_in? && current_user == @animal.user && @animal.trading_status == 2%>
   <%= button_to "取引を中止する", trading_destroy_animal_path(@animal), method: :delete, data: { confirm: "本当に取引を中止しますか？" },class:"btn btn-danger" %>
 <% end %>
 
@@ -51,6 +51,12 @@
 <%= link_to "一覧画面へ戻る", animals_path,class:"btn btn-primary"%>
 
 <a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="btn btn-dark">webでビデオ通話をする</a>
+
+<% if TradingEvaluation.find_by(room_id: @room.id) && TradingEvaluation.find_by(user_id: current_user.id)%>
+  <p>評価済みです</p>
+<% else %>
+  <%= link_to "取引相手を評価する", new_trading_evaluation_path(room_id: @room.id), data: {confirm:"取引が終わったので取引相手を評価しますか？"}%>
+<% end %>
 
 <script>
   document.addEventListener('turbolinks:load', function() {

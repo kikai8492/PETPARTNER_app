@@ -1,0 +1,22 @@
+<h1><%= current_user.nick_name%>の取引評価一覧</h1>
+
+<% if @trading_evaluations.present?%>
+  <tr>
+    <td>
+      <h2>評価してくれたユーザー:<%= @trading_partner.nick_name%></h2>
+    </td>
+    <% @trading_evaluations.each do |trading_evaluation|%>
+      <td>
+        <h2>評価日:<%= trading_evaluation.created_at.strftime("%Y-%m-%d %H:%M")%></h2>
+      </td>
+      <td>
+        <h3>評価:<%= trading_evaluation.score%></h3>
+      </td>
+      <td>
+        <h3>評価コメント:<%= trading_evaluation.feedback%></h3>
+      </td>
+    <% end %>
+  </tr>
+<% else %>
+  <h2>まだ取引評価はありません</h2>
+<% end %>
