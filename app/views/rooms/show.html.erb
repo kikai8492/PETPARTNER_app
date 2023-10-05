@@ -29,9 +29,11 @@
   <%= f.text_field :message, placeholder: "メッセージを入力"%>
 
   
-  <%= text_field_tag :meeting_place_url, nil, placeholder: "取引場所のURL", id: "meeting-place-url" %>
   <!-- "自動で取引場所を決める"ボタンを追加 -->
-  <%= button_tag "自動で取引場所を決める", type: "button", id: "auto-select-place" %>
+  <% if @animal.trading_status == 0%>
+    <%= text_field_tag :meeting_place_url, nil, placeholder: "取引場所のURL", id: "meeting-place-url" %>
+    <%= button_tag "自動で取引場所を決める", type: "button", id: "auto-select-place" %>
+  <% end %>
 
   <%= f.hidden_field :room_id, value: @room.id %>
   <%= f.file_field :image, id: 'image_input' %>
@@ -42,17 +44,22 @@
   <%= f.submit "送信", class: "btn btn-success" %>
 <% end %>
 
-<% if user_signed_in? && current_user == @animal.user && @animal.trading_status == 2%>
+<% if user_signed_in? && current_user == @animal.user && @animal.trading_status == 1%>
   <%= button_to "取引を中止する", trading_destroy_animal_path(@animal), method: :delete, data: { confirm: "本当に取引を中止しますか？" },class:"btn btn-danger" %>
 <% end %>
 
-<%= link_to "取引相手の情報を見る", userinfo_path(@room.entries.where.not(user_id: current_user.id).first.user_id),class: "btn btn-info"%>
+<% if @animal.trading_status == 1%>
+  <%= link_to "取引相手の情報を見る", userinfo_path(@room.entries.where.not(user_id: current_user.id).first.user_id),class: "btn btn-info"%>
+<% end %>
 
 <%= link_to "一覧画面へ戻る", animals_path,class:"btn btn-primary"%>
 
-<a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="btn btn-dark">webでビデオ通話をする</a>
+<% if @animal.trading_status == 1%>
+  <a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="btn btn-dark">webでビデオ通話をする</a>
+<% end %>
 
-<% if TradingEvaluation.find_by(room_id: @room.id) && TradingEvaluation.find_by(user_id: current_user.id)%>
+<%# if TradingEvaluation.find_by(room_id: @room.id) && TradingEvaluation.find_by(user_id: current_user.id)%>
+<% if TradingEvaluation.find_by(room_id: @room.id,user_id: current_user.id)%>
   <p>評価済みです</p>
 <% else %>
   <%= link_to "取引相手を評価する", new_trading_evaluation_path(room_id: @room.id), data: {confirm:"取引が終わったので取引相手を評価しますか？"}%>

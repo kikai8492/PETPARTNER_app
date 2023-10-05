@@ -4,7 +4,8 @@ class User < ApplicationRecord
   has_many :animals, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  has_many :messages, dependent: :destroy
+  # has_many :messages, dependent: :destroy
+  has_many :chats, dependent: :destroy
   has_many :entries, dependent: :destroy
 
   has_many :options, dependent: :destroy
@@ -44,19 +45,4 @@ class User < ApplicationRecord
       Float::INFINITY
     end
   end
-
-  # def coordinates
-  #   results = Geocoder.search(full_address)
-  #   if results.present?
-  #     lat = results.first.latitude
-  #     lon = results.first.longitude
-  #     { latitude: lat, longitude: lon }
-  #   else
-  #     nil
-  #   end
-  # end
-
-  # def full_address
-  #   [postal_code, prefecture, municipality, street_address].compact.join(', ')
-  # end
 end

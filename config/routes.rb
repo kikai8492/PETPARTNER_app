@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   resources :trading_partner_checks, only: [:show]
   resources :trading_partner_check_mores, only: [:show]
   resources :trading_evaluations, only: [:index, :new, :create, :show]
+  resources :trading_animals, only: [:index]
 end
