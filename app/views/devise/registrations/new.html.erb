@@ -102,6 +102,12 @@
     <%= f.text_field :self_introduction, placeholder: "よろしくお願いいたします。" %>
   </div>
 
+  <div class="field">
+    <%= link_to "利用規約を確認する", page_path('terms')%><br>
+    <%= f.label :"利用規約に同意する" %>
+    <%= f.check_box :terms_of_use,{},  "利用規約に同意しました", ""%>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

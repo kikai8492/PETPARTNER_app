@@ -1,0 +1,15 @@
+<h1><%= current_user.nick_name%>の取引中の動物一覧</h1>
+
+<% if @all_animals.blank?%>
+  <p>取引中の動物はありません</p>
+<% end %>
+
+<% @all_animals.each do |all_animal|%>
+  <tr>
+    <td>
+      <%= link_to animal_path(all_animal) do %>
+        <%= image_tag url_for(all_animal.images.first), size: "200x200" %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

@@ -3,6 +3,7 @@ class Animal < ApplicationRecord
   belongs_to :room, optional: true
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
+  has_many_attached :images
   
   validates :pet_type, presence: true
   validates :pet_name, presence: true, length: { minimum:1, maximum: 255 }
@@ -14,7 +15,6 @@ class Animal < ApplicationRecord
   validates :note, presence: true
   validates :trading_status, presence: true
   validates :images, presence: true
-  has_many_attached :images
 
   validate :images_max_length
   validate :images_min_length

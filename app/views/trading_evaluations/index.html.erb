@@ -1,0 +1,85 @@
+<div class="evaluation_body">
+
+  <div class="evaluation_header">
+    <h1><%= current_user.nick_name%>の取引評価一覧</h1>
+  </div>
+
+  <% if @trading_evaluations.present?%>
+    <div class = "evaluation">
+      <table>
+        <tr>
+          <th>取引相手</th>
+          <tr>
+            <td>
+              <% @trading_partner.each do |trading_partner|%>
+                <tr>
+                  <td><%= trading_partner.nick_name%></td>
+                </tr>
+              <% end %>
+            </td>
+          </tr>
+        </tr>
+      </table>
+        
+      <table>
+        <tr>
+          <th>評価日</th>
+          <tr>
+            <td>
+              <% @trading_evaluations.each do |trading_evaluation|%>
+                <tr>
+                  <td><%= trading_evaluation.created_at.strftime("%Y-%m-%d") %></td>
+                </tr>
+              <% end %>
+            </td>
+          </tr>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>評価</th>
+          <tr>
+            <td>
+              <% @trading_evaluations.each do |trading_evaluation|%>
+                <tr>
+                  <td><%= trading_evaluation.score %></td>
+                </tr>
+              <% end %>
+            </td>
+          </tr>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>評価コメント</th>
+          <tr>
+            <td>
+              <% @trading_evaluations.each do |trading_evaluation|%>
+                <tr>
+                  <td><%= trading_evaluation.feedback %></td>
+                </tr>
+              <% end %>
+            </td>
+          </tr>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>チャットルーム</th>
+          <td>
+            <% @chat_rooms.each do |chat_room|%>
+              <tr>
+                <td><%= link_to "チャットルームへ", room_path(chat_room)%></td>
+              </tr>
+              <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <% else %>
+    <h2>まだ取引評価はありません</h2>
+  <% end %>
+</div>

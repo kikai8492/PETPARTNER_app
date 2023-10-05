@@ -1,0 +1,21 @@
+.evaluation_header {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.evaluation_body {
+  width: 100%;
+  height: 100%;
+}
+
+.evaluation {
+  text-align: center;
+}
+
+.evaluation table {
+  display: inline-block;  
+  width: auto;       
+  margin-right: 5rem;     
+  text-align: center;
+}

@@ -123,6 +123,14 @@ class AnimalsController < ApplicationController
     redirect_to animals_path, notice: "取引を中止しました"
   end
 
+  def end_trading
+    @animal = Animal.find(params[:id])
+
+    @animal.update(trading_status: 2)
+
+    redirect_to animals_path, notice: "取引を終了しました。またのご利用をお待ちしております"
+  end
+
   def edit
     @animal = Animal.find(params[:id])
     if @animal.user != current_user
