@@ -31,3 +31,19 @@ ja:
         self_introduction: 自己紹介
       chat: 
         message: メッセージ
+      option:
+        answer1: 質問1
+        answer2: 質問2
+        answer3: 質問3
+        answer4: 質問4
+        answer5: 質問5
+        answer6: 質問6
+        answer7: 質問7
+        answer8: 質問8
+        answer9: 質問9
+        answer10: 質問10
+      trading_evaluation:
+        feedback: 評価コメント
+        score: 評価
+        get_animal: 譲渡したもしくは引き取った
+

@@ -1,6 +1,5 @@
-<h1><%= current_user.nick_name%>の掲載中の動物一覧<h1>
+<h1><%= current_user.nick_name%>の掲載の動物一覧<h1>
 
-<%# if current_user.animals.present?%>
 <% if current_user.animals.where(trading_status: [0, 1]).exists? %>
   <% current_user.animals.each do |animal|%>
         <tr>

@@ -1,7 +1,7 @@
 <%= form_with(model: @option, local:true, url: options_path, method: :post) do |form|%>
   <% if @option.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@option.errors.count, "error") %> 件のエラーがあるため診断できません</h2>
+      <h2><%= pluralize(@option.errors.count, "件") %> の回答が未回答のため診断できません</h2>
       <ul>
         <% @option.errors.full_messages.each do |message| %>
           <li><%= message %></li>

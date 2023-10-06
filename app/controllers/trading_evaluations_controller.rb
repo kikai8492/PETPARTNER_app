@@ -1,12 +1,5 @@
 class TradingEvaluationsController < ApplicationController
   def index
-    # @trading_evaluations = TradingEvaluation.where(receive_user_id: current_user.id)
-    # # trading_partner = @trading_evaluations.pluck(:user_id)
-
-    # @trading_partner = User.find(@trading_evaluations.pluck(:user_id))
-    # # @trading_partner = User.map {|user|}
-    # chat_room = @trading_evaluations.pluck(:room_id)
-    # @chat_room = Room.where(id: chat_room)
     @trading_evaluations = TradingEvaluation.where(receive_user_id: current_user.id)
 
     @trading_partner = @trading_evaluations.map do |tp|
@@ -21,17 +14,20 @@ class TradingEvaluationsController < ApplicationController
     @trading_evaluation = TradingEvaluation.new
     @room = Room.find(params[:room_id])
     @animal = Animal.find(@room.animal_id)
-
+    
     trading_partner_id = @room.entries.where.not(user_id: current_user.id).first.user_id
     @trading_partner = User.find(trading_partner_id)
   end
 
   def create
-    room = Room.find(params[:trading_evaluation][:room_id])
-    @trading_evaluation = room.trading_evaluations.build(trading_evaluation_params)
+    @room = Room.find(params[:trading_evaluation][:room_id])
+    @trading_evaluation = @room.trading_evaluations.build(trading_evaluation_params)
+    @animal = Animal.find(@room.animal_id)
+    trading_partner_id = @room.entries.where.not(user_id: current_user.id).first.user_id
+    @trading_partner = User.find(trading_partner_id)
 
     if @trading_evaluation.save
-      @animal = Animal.find(room.animal_id)
+      @animal = Animal.find(@room.animal_id)
       @animal.update(trading_status: 2)
       redirect_to animals_path, notice: "取引相手を評価しました。以上で取引終了です。またのご利用をお待ちしております"
     else
