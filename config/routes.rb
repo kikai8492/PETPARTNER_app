@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     after_sigin_up_path_for: '/new_option_path',
     after_sign_in_path_for: '/animals'
   }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
   resources :animals do
     resources :favorites, only: [:create, :destroy]
     member do
