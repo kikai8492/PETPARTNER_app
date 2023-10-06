@@ -28,13 +28,6 @@
 <%= form_for @chat do |f| %>
   <%= f.text_field :message, placeholder: "メッセージを入力"%>
 
-  
-  <!-- "自動で取引場所を決める"ボタンを追加 -->
-  <% if @animal.trading_status == 0%>
-    <%= text_field_tag :meeting_place_url, nil, placeholder: "取引場所のURL", id: "meeting-place-url" %>
-    <%= button_tag "自動で取引場所を決める", type: "button", id: "auto-select-place" %>
-  <% end %>
-
   <%= f.hidden_field :room_id, value: @room.id %>
   <%= f.file_field :image, id: 'image_input' %>
 
@@ -58,7 +51,6 @@
   <a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="btn btn-dark">webでビデオ通話をする</a>
 <% end %>
 
-<%# if TradingEvaluation.find_by(room_id: @room.id) && TradingEvaluation.find_by(user_id: current_user.id)%>
 <% if TradingEvaluation.find_by(room_id: @room.id,user_id: current_user.id)%>
   <p>評価済みです</p>
 <% else %>
@@ -67,7 +59,6 @@
 
 <script>
   document.addEventListener('turbolinks:load', function() {
-    // Check if jQuery is loaded
     if (typeof $ === 'undefined') {
       console.error('jQuery is not loaded');
       return;
@@ -80,27 +71,6 @@
         $("#image_preview").show();
       }
       reader.readAsDataURL(this.files[0]);
-    });
-
-    const roomId = <%= @room.id %>;
-    const selectPlaceButton = document.getElementById('auto-select-place');
-    const meetingPlaceURLInput = document.getElementById('meeting-place-url');
-
-    selectPlaceButton.addEventListener('click', function() {
-      fetch(`/rooms/${roomId}/suggest_meeting_place`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.map_url) {
-            meetingPlaceURLInput.value = data.map_url;
-            alert('取引場所のURLを入力しました。');
-          } else {
-            alert('取引場所のURLを取得できませんでした。');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('エラーが発生しました。再度試してください。');
-        });
     });
   });
 </script>

@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     member do
       post 'start_chat'
       delete 'trading_destroy'
-      # post 'end_trading'
     end
   end
 
@@ -22,12 +21,8 @@ Rails.application.routes.draw do
   resources :userinfos, only: [:show]
   root 'animals#index'
   resources :chats, only: [:create, :destroy]
-  resources :rooms, only: [:create, :show] do
-    member do
-      get :suggest_meeting_place
-    end
-  end
-
+  resources :rooms, only: [:create, :show] 
+    
   resources :options, only: [:index, :new, :create, :show]
   resources :checker_show, only: [:show]
   resources :trading_partner_checks, only: [:show]
