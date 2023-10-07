@@ -6,36 +6,44 @@
   </ul>
 <% end %>
 
-<h4><%= @animal.pet_name %>の取引チャットルーム</h4>
+<h4 class="text-5xl ..."><%= @animal.pet_name %>の取引チャットルーム</h4>
 
-<% @entries.each do |e| %>
-  <%= image_tag e.user.icon.url, size:50 %>
-  <%= e.user.nick_name %>
-<% end %>
+<div class = "room_users">
+  <% @entries.each do |e| %>
+    <%= image_tag e.user.icon.url, size:50, class:"inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" %><%= e.user.nick_name %>
+  <% end %>
+</div>
 
 <% if @messages.present? %>
   <% @messages.each do |m|%>
-  <%= image_tag m.user.icon.url, size:50%>
-  <%= m.message%><br>
-  <% if m.image.present? %>
-    <%= image_tag m.image.url, size:100 %>
+    <%= image_tag m.user.icon.url, size:50, class: "inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" %>
+    <span class="inline-block"><%= m.message %> <%= m.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+    <br>
+
+    <% if m.image.present? %>
+      <%= image_tag m.user.icon.url, size:50, class: "inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" %>
+      <%= image_tag m.image.url, size:100, class: "inline-block" %>
+      <span class="inline-block"><%= m.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+      <br>
+    <% end %>
   <% end %>
-  <br>
-  <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
-<% end %>
 <% end %>
 
-<%= form_for @chat do |f| %>
-  <%= f.text_field :message, placeholder: "メッセージを入力"%>
+<div class = "input">
+  <%= form_for @chat do |f| %>
+    <div class = "text_input">
+    <%= f.text_field :message, placeholder: "メッセージを入力", class:"bg-gray-200 rounded-md"%>
+    </div>
 
-  <%= f.hidden_field :room_id, value: @room.id %>
-  <%= f.file_field :image, id: 'image_input' %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.file_field :image, id: 'image_input' %>
 
-  <br>
-  <img id="image_preview" src="#" alt="Image Preview" style="display: none; width: 5rem; height: 5rem;">
+    <br>
+    <img id="image_preview" src="#" alt="Image Preview" style="display: none; width: 5rem; height: 5rem;">
 
-  <%= f.submit "送信", class: "btn btn-success" %>
-<% end %>
+    <%= f.submit "送信", class: "btn btn-success" %>
+  <% end %>
+</div>
 
 <% if user_signed_in? && current_user == @animal.user && @animal.trading_status == 1%>
   <%= button_to "取引を中止する", trading_destroy_animal_path(@animal), method: :delete, data: { confirm: "本当に取引を中止しますか？" },class:"btn btn-danger" %>
@@ -54,7 +62,7 @@
 <% if TradingEvaluation.find_by(room_id: @room.id,user_id: current_user.id)%>
   <p>評価済みです</p>
 <% else %>
-  <%= link_to "取引相手を評価する", new_trading_evaluation_path(room_id: @room.id), data: {confirm:"取引が終わったので取引相手を評価しますか？"}%>
+  <%= link_to "取引相手を評価する", new_trading_evaluation_path(room_id: @room.id), data: {confirm:"取引が終わったので取引相手を評価しますか？"}, class:"btn btn-success"%>
 <% end %>
 
 <script>

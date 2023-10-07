@@ -4,35 +4,33 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-  <%= f.label :"アイコン" %><br />
-  <%= f.file_field :icon, id: 'icon_input' %>
-  <br>
-  <img id="icon_preview" src="#" alt="Icon Preview" style="display: none; width: 5rem; height: 5rem;">
-</div>
+    <%= f.label :"アイコン" %><img id="icon_preview" src="#" alt=" Icon Preview" class="inline-block h-20 w-20 rounded-full ring-2 ring-white dark:ring-gray-800"><br>
+    <%= f.file_field :icon, id: 'icon_input' %>
+  </div>
 
   <div class="field">
     <%= f.label :"苗字" %><br />
-    <%= f.text_field :last_name, placeholder: "例:田中" %>
+    <%= f.text_field :last_name, placeholder: "例:田中" ,class:"bg-gray-200 rounded-md"%>
   </div>
 
   <div class="field">
     <%= f.label :"名前" %><br />
-    <%= f.text_field :first_name, placeholder: "例:太郎"%>
+    <%= f.text_field :first_name, placeholder: "例:太郎",class:"bg-gray-200 rounded-md"%>
   </div>
 
   <div class="field">
     <%= f.label :"ユーザネーム" %><br />
-    <%= f.text_field :nick_name, placeholder: "例:yamada"%>
+    <%= f.text_field :nick_name, placeholder: "例:yamada",class:"bg-gray-200 rounded-md"%>
   </div>
 
   <div class="field">
     <%= f.label :"電話番号(ハイフンなし)" %><br />
-    <%= f.text_field :phone_number, placeholder: 123456789 %>
+    <%= f.text_field :phone_number, placeholder: 123456789,class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "tarou@example.com" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "tarou@example.com",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
@@ -40,17 +38,17 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %>文字以上)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :"確認用パスワード" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :"郵便番号(ハイフンなし)" %><br />
-    <%= f.text_field :postal_code, placeholder: 123456789 %>
+    <%= f.text_field :postal_code, placeholder: 123456789,class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
@@ -71,12 +69,12 @@
 
   <div class="field">
     <%= f.label :"市区町村" %><br />
-    <%= f.text_field :municipality, placeholder: "⚪⚪︎市××区" %>
+    <%= f.text_field :municipality, placeholder: "⚪⚪︎市××区",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :"以降の住所" %><br />
-    <%= f.text_field :street_address, placeholder: "⚪︎丁目⚪︎番地 ××マンション △△号室" %>
+    <%= f.text_field :street_address, placeholder: "⚪︎丁目⚪︎番地 ××マンション △△号室",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
@@ -99,11 +97,11 @@
 
   <div class="field">
     <%= f.label :"自己紹介" %><br />
-    <%= f.text_field :self_introduction, placeholder: "よろしくお願いいたします。" %>
+    <%= f.text_field :self_introduction, placeholder: "よろしくお願いいたします。",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
-    <%= link_to "利用規約を確認する", page_path('terms')%><br>
+    <%= link_to "利用規約を確認する", page_path('terms'), class:"py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%><br>
     <%= f.label :"利用規約に同意する" %>
     <%= f.check_box :terms_of_use,{},  "利用規約に同意しました", ""%>
   </div>

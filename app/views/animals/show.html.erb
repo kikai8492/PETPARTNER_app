@@ -1,68 +1,73 @@
-<h1><%= @animal.pet_name%>のページ<h1>
+<div class = "pet_name">
+  <h1><%= @animal.pet_name%>のページ<h1>
+</div>
 
-
-<% if @animal.trading_status == 1 && current_user != @animal.user%>
-  <h2><%= @animal.pet_name%>は現在取引中です。</h2>
-<% end %>
-
-<% if @animal.trading_status == 2 && current_user != @animal.user%>
-  <h2><%= @animal.pet_name%>の里親は無事に見つかりましたので応募できません</h2>
-<% end %>
-<%if @animal.images.attached? %>
-  <% @animal.images.each do |image|%>
-    <%= image_tag image, size:"200x200" %>
+<div class = "animal_info">
+  <% if @animal.trading_status == 1 && current_user != @animal.user%>
+    <h2><%= @animal.pet_name%>は現在取引中です。</h2>
   <% end %>
-<% end %>
 
-<p>種類:<%= @animal.pet_type %></p>
-
-<p>性別:<%= @animal.sex %></p>
-
-<p>年齢:<%= @animal.age %></p>
-
-<p>ワクチン接種状況:<%= @animal.vaccinated %></p>
-
-<p>去勢手術:<%= @animal.spayed_neutered %></p>
-
-<p>都道府県:<%= @animal.prefecture%>
-
-<p>説明:<%= @animal.note%></p>
-
-<p>投稿したユーザー:<%= @animal.user.nick_name%></p>
-
-<% if @animal.user == current_user && @animal.trading_status == 0%>
-  <%= link_to "動物の情報を編集する", edit_animal_path %>
-  <%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"}%>
-<% end %>
-
-<p>お気に入り登録人数:<%= @animal.favorites.count%>人</p>
-<% if user_signed_in? && @animal.user != current_user%>
-  <% if current_user.favorited_by?(@animal.id)%>
-    <div><%= link_to "❤️", animal_favorite_path(@animal), method: :delete%></div>
-  <% else %>
-    <div><%= link_to "♡", animal_favorites_path(@animal), method: :post%></div>
+  <% if @animal.trading_status == 2 && current_user != @animal.user%>
+    <h2><%= @animal.pet_name%>の里親は無事に見つかりましたので応募できません</h2>
   <% end %>
-<% end %>
+  <%if @animal.images.attached? %>
+    <% @animal.images.each do |image|%>
+      <%= image_tag image, size:"200x200" %>
+    <% end %>
+  <% end %>
 
-<% if current_user == @animal.user  && (@animal.trading_status == 1 || @animal.trading_status == 2)%>
-  <%= link_to "取引画面へ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
-<% end %>
+  <p>種類:<%= @animal.pet_type %></p>
 
-<% if user_signed_in? && @animal.user != current_user%>
-  <% if @isRoom == true %>
-    <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
-  <% else %>
-    <%= form_for @room, url: start_chat_animal_path(@animal) do |f|%> <!-- start_chatのルートを指定する必要があります -->
-      <%= fields_for @entry do |e|%>
-        <%= e.hidden_field :user_id, value: @user.id %>
-      <% end %>
+  <p>性別:<%= @animal.sex %></p>
 
-      <% if @animal.trading_status == 0%>
-        <%= f.submit "この動物に応募する" %>
+  <p>年齢:<%= @animal.age %></p>
+
+  <p>ワクチン接種状況:<%= @animal.vaccinated %></p>
+
+  <p>去勢手術:<%= @animal.spayed_neutered %></p>
+
+  <p>都道府県:<%= @animal.prefecture%>
+
+  <p>説明:<%= @animal.note%></p>
+
+  <p>投稿したユーザー:<%= @animal.user.nick_name%></p>
+</div>
+
+<div class = "favorite">
+  <% if user_signed_in? && @animal.user != current_user%>
+    <% if current_user.favorited_by?(@animal.id)%>
+      <%= link_to "❤️", animal_favorite_path(@animal), method: :delete%><%= @animal.favorites.count%>
+    <% else %>
+      <%= link_to "♡", animal_favorites_path(@animal), method: :post%><%= @animal.favorites.count%>
+    <% end %>
+  <% end %>
+</div>
+
+<div class = "button">
+  <% if @animal.user == current_user && @animal.trading_status == 0%>
+    <%= link_to "動物の情報を編集する", edit_animal_path %>
+    <%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"}%>
+  <% end %>
+
+  <% if current_user == @animal.user  && (@animal.trading_status == 1 || @animal.trading_status == 2)%>
+    <%= link_to "取引画面へ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
+  <% end %>
+
+  <% if user_signed_in? && @animal.user != current_user%>
+    <% if @isRoom == true %>
+      <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+    <% else %>
+      <%= form_for @room, url: start_chat_animal_path(@animal) do |f|%> <!-- start_chatのルートを指定する必要があります -->
+        <%= fields_for @entry do |e|%>
+          <%= e.hidden_field :user_id, value: @user.id %>
+        <% end %>
+
+        <% if @animal.trading_status == 0%>
+          <%= f.submit "この動物に応募する",class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-green-200 font-semibold text-green-500 hover:text-white hover:bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
 
-<%= link_to "一覧画面に戻る", animals_path%>
-
+  <%= link_to "一覧画面に戻る", animals_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-900 font-semibold text-gray-800 hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:border-gray-900 dark:text-white dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800"%>
+</div>

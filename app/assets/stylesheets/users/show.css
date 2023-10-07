@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  height: 100vh;
+  /* display: flex;
+  justify-content: center; */
+  align-items: center;
+  /* font-family: 'Arial', sans-serif; */
+}
+
+.user_info {
+  padding-top: 10rem;
+  padding-bottom: 5rem;
+  text-align: center;
+}
+
+.button {
+  text-align: center;
+}

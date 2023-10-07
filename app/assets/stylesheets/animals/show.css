@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  height: 100vh;
+  align-items: center;
+}
+
+.animal_info {
+  padding-top: 5rem;
+
+  text-align: center;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+.pet_name h1{
+  text-align: center;
+  width: 100%;
+  font-size: 5rem;
+}
+
+.favorite {
+  text-align: center;
+}
+
+.favorite a {
+  text-decoration: none;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ボタンやリンク間のスペースを調整するためのCSS */
+.button a, 
+.button input[type="submit"], 
+.button button {
+  margin: 0 10px 10px; /* 横の間隔と、次の行に移動した場合の上の間隔を調整 */
+}

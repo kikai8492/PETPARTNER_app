@@ -1,76 +1,82 @@
 <header>
-  <div class="flex justify-center ...">
-    <h1 class="animate-pulse font-bold text-black-500 mb-6 text-6xl">
-      PETPARTNER
-    </h1>
+  <div class = "title">
+    <div class="flex justify-center ...">
+      <h1 class="animate-pulse font-bold text-green-500 mb-6 text-6xl">
+        PETPARTNER
+      </h1>
+    </div>
   </div>
 
   <div class = "select">
   <%# <div class = "flex flex-row-reverse ... flex justify-center ... w-auto ... whitespace-nowrap"> %>
-    <p><%= link_to "掲載する", new_animal_path,class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-green-200 font-semibold text-green-500 hover:text-white hover:bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %> </p> 
-    
-    <% if user_signed_in? %>
-      <p><%= current_user.nick_name%>でログイン中</p>
-      <p><%= link_to "マイページ", users_show_path%></p>
-    <% else %>
-      <p><%= link_to "ログイン", new_user_session_path %></p>
-    <% end %>
+    <div class = "info">
+      <% if user_signed_in? %>
+        <p><%= link_to "掲載する", new_animal_path,class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-green-200 font-semibold text-green-500 hover:text-white hover:bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %> </p> 
+      <% end %>
+      
+      <% if user_signed_in? %>
+        <p><%= link_to "#{current_user.nick_name}のマイページ", users_show_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md bg-purple-100 border border-transparent font-semibold text-purple-500 hover:text-white hover:bg-purple-100 focus:outline-none focus:ring-2 ring-offset-white focus:ring-purple-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%></p>
+      <% else %>
+        <p><%= link_to "ログイン", new_user_session_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md bg-purple-100 border border-transparent font-semibold text-purple-500 hover:text-white hover:bg-purple-100 focus:outline-none focus:ring-2 ring-offset-white focus:ring-purple-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %></p>
+      <% end %>
 
-    <% if user_signed_in?%>
-      <%= link_to "飼い主チェッカー", new_option_path%>
-    <% end %>
+      <% if user_signed_in?%>
+        <%= link_to "飼い主チェッカー", new_option_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md bg-yellow-100 border border-transparent font-semibold text-yellow-500 hover:text-white hover:bg-yellow-100 focus:outline-none focus:ring-2 ring-offset-white focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
+      <% end %>
+    </div>
 
-    <%= form_with(url: animals_path, local: true, method: :get) do |form|%>
+    <div class = "select_animal">
+      <%= form_with(url: animals_path, local: true, method: :get) do |form|%>
 
-      <%= form.select :pet_type, [["猫"],["犬"]], include_blank: "動物を選択",class:"m-1 btn"%>
+        <%= form.select :pet_type, [["猫"],["犬"]], include_blank: "動物を選択",class:"m-1 btn"%>
 
-      <%= form.select :vaccinated, [["接種済み"],["未接種"]], include_blank: "ワクチンの接種状況を選択"%>
+        <%= form.select :vaccinated, [["接種済み"],["未接種"]], include_blank: "ワクチンの接種状況を選択"%>
 
-      <%= form.select :spayed_neutered, [["去勢済み"],["未去勢"]], include_blank: "去勢手術の状況を選択"%>
+        <%= form.select :spayed_neutered, [["去勢済み"],["未去勢"]], include_blank: "去勢手術の状況を選択"%>
 
-      <%= form.select :sex, [["オス"],["メス"]], include_blank: "性別を選択"%>
+        <%= form.select :sex, [["オス"],["メス"]], include_blank: "性別を選択"%>
 
-      <%= form.select :age, 
-      [ ["0~3ヶ月"], ["3~6ヶ月"], ["6ヶ月~1歳"], ["1歳~1歳半"],
-        ["1歳半~2歳"],["2歳~3歳"],["3歳~4歳"], ["4歳~5歳"],
-        ["5歳~6歳"], ["6歳~7歳"], ["8歳~9歳"], ["9歳~10歳"],
-        ["10歳以上"]
-      ], include_blank: "年齢を選択して下さい"%>
+        <%= form.select :age, 
+        [ ["0~3ヶ月"], ["3~6ヶ月"], ["6ヶ月~1歳"], ["1歳~1歳半"],
+          ["1歳半~2歳"],["2歳~3歳"],["3歳~4歳"], ["4歳~5歳"],
+          ["5歳~6歳"], ["6歳~7歳"], ["8歳~9歳"], ["9歳~10歳"],
+          ["10歳以上"]
+        ], include_blank: "年齢を選択して下さい"%>
 
-      <% prefectures = [
-      "北海道", "青森県", "岩手県", "宮城県", "秋田県",
-      "山形県", "福島県", "茨城県", "栃木県", "群馬県",
-      "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県",
-      "富山県", "石川県", "福井県", "山梨県", "長野県",
-      "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県",
-      "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県",
-      "鳥取県", "島根県", "岡山県", "広島県", "山口県",
-      "徳島県", "香川県", "愛媛県", "高知県", "福岡県",
-      "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県",
-      "鹿児島県", "沖縄県"
-      ]%>
+        <% prefectures = [
+        "北海道", "青森県", "岩手県", "宮城県", "秋田県",
+        "山形県", "福島県", "茨城県", "栃木県", "群馬県",
+        "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県",
+        "富山県", "石川県", "福井県", "山梨県", "長野県",
+        "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県",
+        "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県",
+        "鳥取県", "島根県", "岡山県", "広島県", "山口県",
+        "徳島県", "香川県", "愛媛県", "高知県", "福岡県",
+        "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県",
+        "鹿児島県", "沖縄県"
+        ]%>
 
-      <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="prefectureDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          都道府県を選択
-          </button>
-          <div class="dropdown-menu" aria-labelledby="prefectureDropdown" style="max-height: 300px; overflow-y: auto;">
-              <% prefectures.each do |prefecture_name| %>
-                  <div class="form-check px-4">
-                      <%= check_box_tag 'prefecture[]', prefecture_name, false, id: "prefecture_#{prefecture_name}", class: 'form-check-input' %> 
-                      <%= label_tag "prefecture_#{prefecture_name}", prefecture_name, class: 'form-check-label' %>
-                  </div>
-              <% end %>
-          </div>
-      </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="prefectureDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            都道府県を選択
+            </button>
+            <div class="dropdown-menu" aria-labelledby="prefectureDropdown" style="max-height: 300px; overflow-y: auto;">
+                <% prefectures.each do |prefecture_name| %>
+                    <div class="form-check px-4">
+                        <%= check_box_tag 'prefecture[]', prefecture_name, false, id: "prefecture_#{prefecture_name}", class: 'form-check-input' %> 
+                        <%= label_tag "prefecture_#{prefecture_name}", prefecture_name, class: 'form-check-label' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
 
-    <%= form.submit "検索する"%>
-    <% end %>
+        <%= form.submit "検索する", class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-pink-200 font-semibold text-pink-500 hover:text-white hover:bg-pink-500 hover:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
+      <% end %>
 
-    <% if current_user.try(:admin?) %>
-      <%= link_to '管理者ログイン', rails_admin_path %>
-    <% end %>
-
+      <% if current_user.try(:admin?) %>
+        <%= link_to '管理者ログイン', rails_admin_path %>
+      <% end %>
+    </div>
   </div>
 </header>
 
@@ -87,7 +93,9 @@
         </tr>
       <% end %>
     <% else %>
-      <h1>動物はいません</h1>
+      <div class = "no_animals">
+        <h1>動物が見つかりません</h1>
+      </div>
     <% end %>
   </table>
 </body>

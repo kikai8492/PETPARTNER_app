@@ -1,0 +1,15 @@
+body {
+  text-align: center;
+}
+
+.room_users{
+  padding:1rem 0 3rem 0;
+} 
+
+.input {
+  padding: 5rem 0 5rem 0;
+}
+
+.text_input {
+  border: 2px;
+}
