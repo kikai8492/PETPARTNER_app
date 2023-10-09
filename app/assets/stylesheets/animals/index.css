@@ -13,11 +13,12 @@
 }
 
 .select_animal {
-  display: flex;
+  /* display: flex; */
+  display: inline-flex;  /* 追加: 要素を横並びにする */
   width: 100%;
   flex-wrap: nowrap;  /* 追加: 折り返しを禁止 */
   justify-content: space-between;  /* 要素間のスペースを最大化 */
-  align-items: center;  /* 縦方向の中央揃え */
+  /* align-items: center;  縦方向の中央揃え */
 }
 
 .dropdown {

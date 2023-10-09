@@ -23,12 +23,16 @@
       <% if user_signed_in?%>
         <%= link_to "飼い主チェッカー", new_option_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md bg-yellow-100 border border-transparent font-semibold text-yellow-500 hover:text-white hover:bg-yellow-100 focus:outline-none focus:ring-2 ring-offset-white focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
       <% end %>
+
+      <% if current_user.try(:admin?) %>
+        <%= link_to '管理者ログイン', rails_admin_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+      <% end %>
     </div>
 
     <div class = "select_animal">
       <%= form_with(url: animals_path, local: true, method: :get) do |form|%>
 
-        <%= form.select :pet_type, [["猫"],["犬"]], include_blank: "動物を選択",class:"m-1 btn"%>
+        <%= form.select :pet_type, [["猫"],["犬"]], include_blank: "動物を選択"%>
 
         <%= form.select :vaccinated, [["接種済み"],["未接種"]], include_blank: "ワクチンの接種状況を選択"%>
 
@@ -56,7 +60,7 @@
         "鹿児島県", "沖縄県"
         ]%>
 
-        <div class="dropdown">
+        <%# <div class="dropdown"> %>
             <button class="btn btn-secondary dropdown-toggle" type="button" id="prefectureDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             都道府県を選択
             </button>
@@ -68,14 +72,12 @@
                     </div>
                 <% end %>
             </div>
-        </div>
+        <%# </div> %>
 
         <%= form.submit "検索する", class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-pink-200 font-semibold text-pink-500 hover:text-white hover:bg-pink-500 hover:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
       <% end %>
 
-      <% if current_user.try(:admin?) %>
-        <%= link_to '管理者ログイン', rails_admin_path %>
-      <% end %>
+      
     </div>
   </div>
 </header>
@@ -105,30 +107,30 @@
 </footer>
 
 <div id="selectedPrefectures">
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-            let dropdownMenu = document.querySelector('.dropdown-menu');
-            let selectedPrefecturesDiv = document.getElementById('selectedPrefectures');
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+      let dropdownMenu = document.querySelector('.dropdown-menu');
+      let selectedPrefecturesDiv = document.getElementById('selectedPrefectures');
 
-            dropdownMenu.addEventListener('change', function(event) {
-                if (event.target.matches('input[type="checkbox"]')) {
-                    updateSelectedPrefectures();
-                }
-            });
+      dropdownMenu.addEventListener('change', function(event) {
+          if (event.target.matches('input[type="checkbox"]')) {
+              updateSelectedPrefectures();
+          }
+      });
 
-            function updateSelectedPrefectures() {
-                let selectedItems = dropdownMenu.querySelectorAll('input[type="checkbox"]:checked');
-                let selectedNames = [];
+      function updateSelectedPrefectures() {
+          let selectedItems = dropdownMenu.querySelectorAll('input[type="checkbox"]:checked');
+          let selectedNames = [];
 
-                selectedItems.forEach(function(item) {
-                    let label = document.querySelector(`label[for="${item.id}"]`);
-                    if (label) {
-                      selectedNames.push(label.textContent);
-                    }
-                });
-
-                selectedPrefecturesDiv.textContent = selectedNames.join(', ');
+          selectedItems.forEach(function(item) {
+            let label = document.querySelector(`label[for="${item.id}"]`);
+            if (label) {
+              selectedNames.push(label.textContent);
             }
-            });
-        </script>
-      </div>
+          });
+
+          selectedPrefecturesDiv.textContent = selectedNames.join(', ');
+      }
+      });
+  </script>
+</div>

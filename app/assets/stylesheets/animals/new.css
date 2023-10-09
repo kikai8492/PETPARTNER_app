@@ -7,3 +7,7 @@
 .preview-image {
   display: inline-block;
 }
+
+h1 {
+  font-size: 5rem;
+}
