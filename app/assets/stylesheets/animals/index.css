@@ -10,6 +10,8 @@
 .info {
   display: flex;
   flex-direction: row-reverse;
+  padding: 10px;
+  gap: 10px;
 }
 
 .select_animal {
@@ -56,4 +58,17 @@ footer {
 footer p {
   text-align: center;
   margin: 0; /* 'margin:0, auto;' は正しくないので 'margin: 0;' に修正します */
+}
+
+.animal-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block; /* image_tag はデフォルトでインライン要素なので、これによってブロック要素として扱います */
+  padding: 20px;
+  
+}
+
+table {
+  width: 100%;
 }

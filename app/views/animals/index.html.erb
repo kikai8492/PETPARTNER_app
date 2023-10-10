@@ -29,11 +29,13 @@
       <% end %>
     </div>
 
+
+
     <div class = "select_animal">
       <%= form_with(url: animals_path, local: true, method: :get) do |form|%>
 
         <%= form.select :pet_type, [["猫"],["犬"]], include_blank: "動物を選択"%>
-
+    
         <%= form.select :vaccinated, [["接種済み"],["未接種"]], include_blank: "ワクチンの接種状況を選択"%>
 
         <%= form.select :spayed_neutered, [["去勢済み"],["未去勢"]], include_blank: "去勢手術の状況を選択"%>
@@ -74,10 +76,8 @@
             </div>
         <%# </div> %>
 
-        <%= form.submit "検索する", class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-pink-200 font-semibold text-pink-500 hover:text-white hover:bg-pink-500 hover:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
+        <%= form.submit "検索する", class:"py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border-2 border-pink-200 font-semibold text-pink-500 hover:text-white hover:bg-pink-500 hover:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
       <% end %>
-
-      
     </div>
   </div>
 </header>
@@ -85,13 +85,15 @@
 <body>
   <table>
     <% if @animals.present?%>
-      <% @animals.each do |animal|%>
+      <% @animals.each_slice(5) do |animal_group| %>
         <tr>
-          <td>
-            <%= link_to animal_path(animal) do %>
-              <%= image_tag url_for(animal.images.first), size: "200x200" %>
-            <% end %>
-          </td>
+          <% animal_group.each do |animal| %>
+            <td>
+              <%= link_to animal_path(animal) do %>
+                <%= image_tag url_for(animal.images.first), size: "200x200", class: "animal-image" %>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     <% else %>
