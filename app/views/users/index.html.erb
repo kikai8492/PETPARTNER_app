@@ -1,17 +1,22 @@
-<h1><%= current_user.nick_name%>の今までの掲載の動物一覧<h1>
+<h1 class="text-6xl ..."><%= current_user.nick_name%>の今までの掲載の動物一覧<h1>
+
 
 <% if current_user.animals.where(trading_status: [0, 1]).exists? %>
-  <% current_user.animals.each do |animal|%>
-        <tr>
+  <table>
+    <% current_user.animals.each_slice(5) do |animal_group|%>
+      <tr>
+        <% animal_group.each do |animal| %>
           <td>
             <%= link_to animal_path(animal) do %>
-              <%= image_tag url_for(animal.images.first), size: "200x200" if animal.images.first.present? %>
+              <%= image_tag url_for(animal.images.first), size: "200x200", class: "animal-image" %>
             <% end %>
           </td>
-        </tr>
-      <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
 <% else %>
   <p>掲載されていません</p>
 <% end %>
 
-<%= link_to "戻る", user_path(current_user)%>
+<%= link_to "戻る", user_path(current_user), class: "py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-900 font-semibold text-gray-800 hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:border-gray-900 dark:text-white dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800"%>

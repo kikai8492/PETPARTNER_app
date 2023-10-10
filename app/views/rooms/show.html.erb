@@ -10,60 +10,76 @@
 
 <div class = "room_users">
   <% @entries.each do |e| %>
-    <%= image_tag e.user.icon.url, size:50, class:"inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" %><%= e.user.nick_name %>
+    <%= image_tag e.user.icon.url, size:50, class:"inline-block h-[5rem] w-[5rem] rounded-full ring-2 ring-white dark:ring-gray-800" %><%= e.user.nick_name %>
   <% end %>
 </div>
 
 <% if @messages.present? %>
-  <% @messages.each do |m|%>
-    <%= image_tag m.user.icon.url, size:50, class: "inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" %>
-    <span class="inline-block"><%= m.message %> <%= m.created_at.strftime("%Y-%m-%d %H:%M") %></span>
-    <br>
+  <table class="message">
+    <% @messages.each do |m|%>
+      <tr>
+        <td rowspan="<%= m.image.present? ? '2' : '1' %>">
+          <%= image_tag m.user.icon.url, size:50, class: "inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" %>
+        </td>
+        <td>
+          <%= m.message %>
+        </td>
+        <td>
+          <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </td>
+      </tr>
 
-    <% if m.image.present? %>
-      <%= image_tag m.user.icon.url, size:50, class: "inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800" %>
-      <%= image_tag m.image.url, size:100, class: "inline-block" %>
-      <span class="inline-block"><%= m.created_at.strftime("%Y-%m-%d %H:%M") %></span>
-      <br>
+      <% if m.image.present? %>
+        <tr>
+          <td>
+            <%= image_tag m.image.url, size:100, class: "inline-block" %>
+          </td>
+          <td>
+            <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
+  </table>
 <% end %>
 
-<div class = "input">
-  <%= form_for @chat do |f| %>
+<%= form_for @chat do |f| %>
+  <div class = "button flex gap-x-4">
     <div class = "text_input">
-    <%= f.text_field :message, placeholder: "メッセージを入力", class:"bg-gray-200 rounded-md"%>
+      <%= f.text_field :message, placeholder: "メッセージを入力", class:"bg-gray-200 rounded-md"%>
     </div>
-
     <%= f.hidden_field :room_id, value: @room.id %>
     <%= f.file_field :image, id: 'image_input' %>
-
-    <br>
+    <%# <br> %>
+  </div>
     <img id="image_preview" src="#" alt="Image Preview" style="display: none; width: 5rem; height: 5rem;">
+  <div class = "submit">
+    <%= f.submit "送信", class: "py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+  </div>
+<% end %>
 
-    <%= f.submit "送信", class: "btn btn-success" %>
+<div class="button flex gap-x-4">
+  <%= link_to "一覧画面へ戻る", animals_path,class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800"%>
+
+  <% if user_signed_in? && current_user == @animal.user && @animal.trading_status == 1%>
+    <%= button_to "取引を中止する", trading_destroy_animal_path(@animal), method: :delete, data: { confirm: "本当に取引を中止しますか？" },class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+  <% end %>
+
+  <% if @animal.trading_status == 1%>
+    <%= link_to "取引相手の情報を見る", userinfo_path(@room.entries.where.not(user_id: current_user.id).first.user_id),class: "py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-yellow-500 text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
+  <% end %>
+
+
+  <% if @animal.trading_status == 1%>
+    <a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">webでビデオ通話をする</a>
+  <% end %>
+
+  <% if TradingEvaluation.find_by(room_id: @room.id,user_id: current_user.id)%>
+    <p class="text-6xl ...">評価済みです</p>
+  <% else %>
+    <%= link_to "取引相手を評価する", new_trading_evaluation_path(room_id: @room.id), data: {confirm:"取引が終わったので取引相手を評価しますか？"}, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-green-500 text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
   <% end %>
 </div>
-
-<% if user_signed_in? && current_user == @animal.user && @animal.trading_status == 1%>
-  <%= button_to "取引を中止する", trading_destroy_animal_path(@animal), method: :delete, data: { confirm: "本当に取引を中止しますか？" },class:"btn btn-danger" %>
-<% end %>
-
-<% if @animal.trading_status == 1%>
-  <%= link_to "取引相手の情報を見る", userinfo_path(@room.entries.where.not(user_id: current_user.id).first.user_id),class: "btn btn-info"%>
-<% end %>
-
-<%= link_to "一覧画面へ戻る", animals_path,class:"btn btn-primary"%>
-
-<% if @animal.trading_status == 1%>
-  <a href="https://meet.google.com/" target="_blank" rel="noreferrer noopener" class="btn btn-dark">webでビデオ通話をする</a>
-<% end %>
-
-<% if TradingEvaluation.find_by(room_id: @room.id,user_id: current_user.id)%>
-  <p>評価済みです</p>
-<% else %>
-  <%= link_to "取引相手を評価する", new_trading_evaluation_path(room_id: @room.id), data: {confirm:"取引が終わったので取引相手を評価しますか？"}, class:"btn btn-success"%>
-<% end %>
 
 <script>
   document.addEventListener('turbolinks:load', function() {

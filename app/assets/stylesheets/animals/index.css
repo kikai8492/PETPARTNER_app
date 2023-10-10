@@ -64,10 +64,15 @@ footer p {
   width: 200px;
   height: 200px;
   object-fit: cover;
-  display: block; /* image_tag はデフォルトでインライン要素なので、これによってブロック要素として扱います */
+  display: block; 
   padding: 20px;
-  
 }
+
+.animal-link {
+  display: inline-block; 
+  background: transparent; 
+} 
+
 
 table {
   width: 100%;

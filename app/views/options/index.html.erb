@@ -1,7 +1,6 @@
-<h1><%= current_user.nick_name%>の飼い主チェッカー履歴一覧</h1>
+<h1 class="text-6xl ..."><%= current_user.nick_name%>の飼い主チェッカー履歴一覧</h1>
 
-<h2><%= current_user.nick_name%>の平均適正は以下の通りです</h2>
-<h3>平均適正:<%= @average_score %>%</h3>
+<h2 class="text-3xl ..."><%= current_user.nick_name%>の平均適正は<%= @average_score %>%です</h2>
 
 <% @options.each do |option|%>
   <tr>
@@ -9,9 +8,13 @@
       <p>回答日:<%= option.created_at.strftime("%Y-%m-%d %H:%M")%></p>
     </td>
     <td>
-      <%=link_to "詳細を見る",checker_show_path(option)%>
+      <%=link_to "詳細を見る",checker_show_path(option), class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-blue-500 hover:text-blue-700 focus:outline-none focus:ring-2 ring-offset-white focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"%>
     </td>
   </tr>
 <% end %>
 
-<%= link_to "戻る", user_path(current_user)%>
+<br>
+
+<div class = "back">
+  <%= link_to "戻る", user_path(current_user), class: "py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-900 font-semibold text-gray-800 hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:border-gray-900 dark:text-white dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800" %>
+</div>

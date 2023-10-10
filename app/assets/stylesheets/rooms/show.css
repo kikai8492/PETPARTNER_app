@@ -8,8 +8,35 @@ body {
 
 .input {
   padding: 5rem 0 5rem 0;
+  text-align: center;
 }
 
 .text_input {
   border: 2px;
+}
+
+.submit {
+  padding:10px;
+}
+
+.message_present {
+  padding: 10px;
+}
+
+.message {
+  width: 30%; /* 例: ページ全体の80%の幅。必要に応じて調整してください */
+  margin: 0 auto; /* 中央揃え */
+  border-collapse: collapse; /* テーブルの罫線をコンパクトにする */
+}
+
+.message td {
+  padding: 8px 12px; /* セルのパディング */
+  
+  text-align: center; /* テキストを中央揃え */
+}
+
+/* 画像を中央に揃える */
+.message td img {
+  display: block;
+  margin: 0 auto;
 }

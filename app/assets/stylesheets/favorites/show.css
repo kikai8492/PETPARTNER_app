@@ -1,0 +1,12 @@
+.animal-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block; /* image_tag はデフォルトでインライン要素なので、これによってブロック要素として扱います */
+  padding: 20px;
+  
+}
+
+table {
+  width: 100%;
+}

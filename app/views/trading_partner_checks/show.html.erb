@@ -1,6 +1,6 @@
-<h1><%= @user.nick_name%>の飼い主チェッカー履歴一覧</h1>
+<h1 class="text-6xl ..."><%= @user.nick_name%>の飼い主チェッカー履歴一覧</h1>
 
-<h2><%= @user.nick_name%>の平均スコア:<%= @average_score %>%</h2>
+<h2 class="text-3xl ..."><%= @user.nick_name%>の平均スコア:<%= @average_score %>%</h2>
 
 <tr>
   <%@user_options.each do |option|%>
@@ -8,7 +8,7 @@
       <p>回答日<%= option.created_at.strftime("%Y-%m-%d %H:%M")%></p>
     </td>
     <td>
-      <%= link_to "詳細を確認する", trading_partner_check_more_path(option)%>
+      <%= link_to "詳細を確認する", trading_partner_check_more_path(option),class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-blue-500 hover:text-blue-700 focus:outline-none focus:ring-2 ring-offset-white focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"%>
     </td>
   <%end%>
 </tr>

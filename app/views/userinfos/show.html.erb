@@ -1,4 +1,4 @@
-<h1><%= @user.nick_name%>のプロフィール</h1>
+<h1 class="text-6xl ..."><%= @user.nick_name%>のプロフィール</h1>
 
 <p>ニックネーム:<%= @user.nick_name%></p>
 
@@ -16,4 +16,4 @@
 
 <p>自己紹介:<%= @user.self_introduction%></p>
 
-<%= link_to "過去の飼い主チェッカーの履歴", trading_partner_check_path(@user)%>
+<%= link_to "過去の飼い主チェッカーの履歴", trading_partner_check_path(@user),class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-900 font-semibold text-gray-800 hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:border-gray-900 dark:text-white dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800"%>
