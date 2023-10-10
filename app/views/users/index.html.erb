@@ -1,4 +1,4 @@
-<h1><%= current_user.nick_name%>の掲載の動物一覧<h1>
+<h1><%= current_user.nick_name%>の今までの掲載の動物一覧<h1>
 
 <% if current_user.animals.where(trading_status: [0, 1]).exists? %>
   <% current_user.animals.each do |animal|%>
@@ -13,3 +13,5 @@
 <% else %>
   <p>掲載されていません</p>
 <% end %>
+
+<%= link_to "戻る", user_path(current_user)%>

@@ -32,7 +32,7 @@
   <%= trading_evaluation.label :score, "悪かった"%>
 
   <h3>評価コメント</h3>
-  <%= trading_evaluation.text_field :feedback%>
+  <%= trading_evaluation.text_field :feedback, class:"bg-gray-200 rounded-md"%>
 
   <%= trading_evaluation.hidden_field :user_id, value: current_user.id %>
   <%= trading_evaluation.hidden_field :receive_user_id, value: @trading_partner.id %>

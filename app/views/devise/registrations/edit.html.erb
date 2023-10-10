@@ -5,39 +5,39 @@
 
   <div class="field">
     <%= f.label :icon, "アイコン" %><br />
-    <img id="icon_preview" src="<%= resource.icon.url %>" alt="User Icon" width="100" height="100">
+    <img id="icon_preview" src="<%= resource.icon.url %>" alt="User Icon" class = "inline-block h-20 w-20 rounded-full ring-2 ring-white dark:ring-gray-800">
     <br>
     <%= f.file_field :icon, id: "icon_input" %>
 </div>
 
   <div class="field">
     <%= f.label :"苗字" %><br />
-    <%= f.text_field :last_name, placeholder: "例:田中" %>
+    <%= f.text_field :last_name, placeholder: "例:田中",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :"名前" %><br />
-    <%= f.text_field :first_name, placeholder: "例:太郎"%>
+    <%= f.text_field :first_name, placeholder: "例:太郎",class:"bg-gray-200 rounded-md"%>
   </div>
 
   <div class="field">
     <%= f.label :"ユーザネーム" %><br />
-    <%= f.text_field :nick_name, placeholder: "例:yamada"%>
+    <%= f.text_field :nick_name, placeholder: "例:yamada",class:"bg-gray-200 rounded-md"%>
   </div>
 
   <div class="field">
     <%= f.label :"電話番号(ハイフンなし)" %><br />
-    <%= f.text_field :phone_number, placeholder: 123456789 %>
+    <%= f.text_field :phone_number, placeholder: 123456789,class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "tarou@example.com" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "tarou@example.com",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :パスワード %> <i>(パスワードを変更する場合は新しいパスワードを、そのままの場合は既存のパスワードを入力してください)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password",class:"bg-gray-200 rounded-md" %>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> 文字以上</em>
@@ -46,17 +46,17 @@
 
   <div class="field">
     <%= f.label :確認用パスワードを入力してください %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :現在のパスワード %> <i>(パスワードを変更した場合は以前のパスワードを、そのままの場合は既存のパスワードを入力してください)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.password_field :current_password, autocomplete: "current-password",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :"郵便番号(ハイフンなし)" %><br />
-    <%= f.text_field :postal_code, placeholder: 123456789 %>
+    <%= f.text_field :postal_code, placeholder: 123456789,class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
@@ -77,12 +77,12 @@
 
   <div class="field">
     <%= f.label :"市区町村" %><br />
-    <%= f.text_field :municipality, placeholder: "⚪⚪︎市××区" %>
+    <%= f.text_field :municipality, placeholder: "⚪⚪︎市××区",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
     <%= f.label :"以降の住所" %><br />
-    <%= f.text_field :street_address, placeholder: "⚪︎丁目⚪︎番地 ××マンション △△号室" %>
+    <%= f.text_field :street_address, placeholder: "⚪︎丁目⚪︎番地 ××マンション △△号室",class:"bg-gray-200 rounded-md" %>
   </div>
 
   <div class="field">
@@ -105,7 +105,7 @@
 
   <div class="field">
     <%= f.label :"自己紹介" %><br />
-    <%= f.text_field :self_introduction, placeholder: "よろしくお願いいたします。" %>
+    <%= f.text_field :self_introduction, placeholder: "よろしくお願いいたします。",class:"bg-gray-200 rounded-md py-5 px-10" %>
   </div>
 
   <div class="actions">

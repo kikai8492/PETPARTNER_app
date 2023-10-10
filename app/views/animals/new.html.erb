@@ -6,7 +6,7 @@
   <%= form_with(model: @animal, local:true, url: animals_path) do |form|%>
     <% if @animal.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@animal.errors.count, "error") %> 件のエラーがあるため投稿できません</h2>
+        <h2><%= pluralize(@animal.errors.count, "件") %> のエラーがあるため投稿できません</h2>
         <ul>
           <% @animal.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -34,7 +34,7 @@
 
       <div class="pet_name">
         <%= form.label :"名前" %>
-        <%= form.text_field :pet_name %>
+        <%= form.text_field :pet_name,class:"bg-gray-200 rounded-md" %>
       </div>
 
       <div class="select">
@@ -81,7 +81,7 @@
 
       <div class="note">
         <%= form.label :"ペットの説明やその他記載" %>
-        <%= form.text_area :note %>
+        <%= form.text_area :note, class:"bg-gray-200 rounded-md" %>
       </div>
 
       <%= form.submit "掲載する"%>

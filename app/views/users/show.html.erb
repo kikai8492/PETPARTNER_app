@@ -1,58 +1,60 @@
-<h1><%= current_user.nick_name%>のページ</h1>
+<div class = "user_info"> 
+  <h1><%= current_user.nick_name%>のページ</h1>
 
-<%= image_tag current_user.icon.url,width: "100rem", height: "100rem" %>
+  <%= image_tag current_user.icon.url,width: "100rem", height: "100rem",class:"inline-block h-20 w-20 rounded-full ring-2 ring-white dark:ring-gray-800" %>
 
-<p>ユーザーネーム:<%= current_user.nick_name%></p>
+  <p>ユーザーネーム:<%= current_user.nick_name%></p>
 
-<p>苗字:<%= current_user.last_name%></p>
+  <p>苗字:<%= current_user.last_name%></p>
 
-<p>名前:<%= current_user.first_name%></p>
+  <p>名前:<%= current_user.first_name%></p>
 
-<p>電話番号:<%= current_user.phone_number%></p>
+  <p>電話番号:<%= current_user.phone_number%></p>
 
-<p>メールアドレス:<%= current_user.email%></p>
+  <p>メールアドレス:<%= current_user.email%></p>
 
-<p>郵便番号:<%= current_user.postal_code%></p>
+  <p>郵便番号:<%= current_user.postal_code%></p>
 
-<p>都道府県:<%= current_user.prefecture %>
+  <p>都道府県:<%= current_user.prefecture %>
 
-<p>市区町村:<%= current_user.municipality%></p>
+  <p>市区町村:<%= current_user.municipality%></p>
 
-<p>以降の住所:<%= current_user.street_address%></p>
+  <p>以降の住所:<%= current_user.street_address%></p>
 
+  <p>性別:<%= current_user.sex%></p>
 
-<%= current_user.sex%>
+  <p>職業:<%= current_user.occupation %></p>
 
-<%= current_user.occupation %>
+  <% if current_user.movable_range == 0%>
+    <p>取引可能範囲:0~50km</p>
+  <% elsif current_user.movable_range == 1%>
+    <p>取引可能範囲:50~100km</p>
+  <% elsif current_user.movable_range == 2%>
+    <p>取引可能範囲:100~200km</p>
+  <% else %>
+    <p>取引可能範囲:それ以上可能</p>
+  <% end %>
 
-<% if current_user.movable_range == 0%>
-  <p>取引可能範囲:0~50km</p>
-<% elsif current_user.movable_range == 1%>
-  <p>取引可能範囲:50~100km</p>
-<% elsif current_user.movable_range == 2%>
-  <p>取引可能範囲:100~200km</p>
-<% else %>
-  <p>取引可能範囲:それ以上可能</p>
-<% end %>
+  <p>自己紹介:<%= current_user.self_introduction%></p>
+</div>
 
-<p>自己紹介:<%= current_user.self_introduction%></p>
+<div class = "button">
+  <%= link_to "戻る", animals_path,class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-900 font-semibold text-gray-800 hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:border-gray-900 dark:text-white dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800"%>
 
-<%= link_to "戻る", animals_path%>
+  <%= link_to "今まで掲載した動物一覧を見る", users_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-yellow-200 font-semibold text-yellow-500 hover:text-white hover:bg-yellow-500 hover:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
 
+  <%= link_to "お気に入り動物一覧を見る", favorites_path, method: :get, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-pink-200 font-semibold text-pink-500 hover:text-white hover:bg-pink-500 hover:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
 
-<%= link_to "掲載中の動物の情報を見る", users_path%>
+  <%= link_to "取引中の動物一覧を見る", trading_animals_path, method: :get, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-green-200 font-semibold text-green-500 hover:text-white hover:bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
 
-<%= link_to "お気に入り動物一覧を見る", favorites_path, method: :get%>
+  <%= link_to "過去の飼い主チェッカーの履歴を見る", options_path, method: :get, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-purple-200 font-semibold text-purple-500 hover:text-white hover:bg-purple-500 hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
 
-<%= link_to "取引中の動物一覧を見る", trading_animals_path, method: :get%>
+  <%= link_to "過去の取引履歴を見る",trading_evaluations_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-blue-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
 
-<%= link_to "過去の飼い主チェッカーの履歴を見る", options_path, method: :get%>
+  <%= link_to "編集する", edit_user_registration_path, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-gray-500 hover:text-white hover:bg-gray-500 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2 transition-all text-sm  dark:hover:bg-gray-600 dark:border-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-600 dark:focus:ring-offset-gray-800"%>
 
-<%= link_to "過去の取引履歴を見る",trading_evaluations_path%>
-
-<%= link_to "編集する", edit_user_registration_path%>
-
-<%= link_to "ログアウトする", destroy_user_session_path, method: :delete%>
+  <%= link_to "ログアウトする", destroy_user_session_path, method: :delete, class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-red-200 font-semibold text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
