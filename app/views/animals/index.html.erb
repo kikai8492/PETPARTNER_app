@@ -81,8 +81,8 @@
 </header>
 
 <body>
-  <table>
-    <% if @animals.present?%>
+  <% if @animals.present? %>
+    <table>
       <% @animals.each_slice(5) do |animal_group| %>
         <tr>
           <% animal_group.each do |animal| %>
@@ -94,12 +94,12 @@
           <% end %>
         </tr>
       <% end %>
-    <% else %>
-      <div class = "no_animals">
-        <h1>動物が見つかりません</h1>
-      </div>
-    <% end %>
-  </table>
+    </table>
+  <% else %>
+    <div class="no_animals">
+      <h1>動物が見つかりません</h1>
+    </div>
+  <% end %>
 </body>
 
 <footer>

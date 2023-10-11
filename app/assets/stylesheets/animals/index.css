@@ -1,5 +1,5 @@
 .title {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 
 .select{
@@ -15,16 +15,14 @@
 }
 
 .select_animal {
-  /* display: flex; */
-  display: inline-flex;  /* 追加: 要素を横並びにする */
+  display: inline-flex; 
   width: 100%;
-  flex-wrap: nowrap;  /* 追加: 折り返しを禁止 */
-  justify-content: space-between;  /* 要素間のスペースを最大化 */
-  /* align-items: center;  縦方向の中央揃え */
+  flex-wrap: nowrap;  
+  justify-content: space-between;  
 }
 
 .dropdown {
-  flex: 1;  /* 追加: 他の要素に比べてドロップダウンが伸びるようにする */
+  flex: 1; 
   margin-right: 10px;
 }
 
@@ -57,10 +55,10 @@ footer {
 
 footer p {
   text-align: center;
-  margin: 0; /* 'margin:0, auto;' は正しくないので 'margin: 0;' に修正します */
+  margin: 0; 
 }
 
-.animal-image {
+/* .animal-image {
   width: 200px;
   height: 200px;
   object-fit: cover;
@@ -76,4 +74,37 @@ footer p {
 
 table {
   width: 100%;
+}
+
+table td {
+  width: 100%;
+  padding: 10px;
+} */
+
+.animal-link {
+  display: inline-block; /* リンクをインラインブロック要素に変更 */
+  text-align: center; /* リンク内のテキストを中央揃えにする */
+  margin-right: 20px; /* 画像間に余白を追加 */
+  margin-bottom: 20px; /* 段落間に余白を追加 */
+  vertical-align: top; /* 画像を上端に揃える */
+  /* width: calc(20% - 20px); 画像の幅を調整（5列で1段） */
+  box-sizing: border-box; /* ボックスモデルの計算に余白とボーダーを含める */
+}
+
+.animal-image {
+  width: 100%; /* 画像の最大幅を指定 */
+  height: 200px; /* 画像の最大高さを指定 */
+  display: block; /* 画像をブロック要素に変更して、中央揃えにする */
+  margin: 0 auto; /* 画像を中央に配置 */
+}
+
+/* テーブルのスタイルを調整 */
+table {
+  width: 100%;
+  table-layout: fixed; /* テーブルのレイアウトを固定 */
+}
+
+/* セルのスタイルを調整 */
+td {
+  padding: 10px; /* セル内の余白を追加 */
 }

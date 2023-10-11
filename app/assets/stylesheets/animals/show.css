@@ -43,3 +43,18 @@ img {
 .button button {
   margin: 0 10px 10px; /* 横の間隔と、次の行に移動した場合の上の間隔を調整 */
 }
+
+.show_image_preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;  /* 画像間のスペース */
+}
+
+.show_p {
+  font-size: 30px;
+  padding: 10px;
+}
+
+.favorite {
+  font-size: 30px;
+}
