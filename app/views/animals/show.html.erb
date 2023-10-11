@@ -53,12 +53,12 @@
     <%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"},class: "py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-red-200 font-semibold text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
   <% end %>
 
-  <% if current_user == @animal.user  && (@animal.trading_status == 1 || @animal.trading_status == 2)%>
+  <% if current_user == @animal.user  && (@animal.trading_status == 1 || @animal.trading_status == 2) %>
     <%= link_to "取引画面へ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
   <% end %>
 
-  <% if user_signed_in? && @animal.user != current_user%>
-    <% if @isRoom == true %>
+  <% if user_signed_in? && @animal.user != current_user %>
+    <% if @isRoom == true && current_user.id == @entry.user_id%>
       <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
     <% else %>
       <%= form_for @room, url: start_chat_animal_path(@animal) do |f|%> <!-- start_chatのルートを指定する必要があります -->

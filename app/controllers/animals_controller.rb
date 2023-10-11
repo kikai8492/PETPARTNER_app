@@ -50,12 +50,16 @@ class AnimalsController < ApplicationController
 
   def show
     @animal = Animal.find(params[:id])
-
     @user = @animal.user
     @currentUserEntry = Entry.where(user: current_user)
     @userEntry = Entry.where(user_id: @user.id)
+
+    @room = Room.find_by(animal_id: @animal.id)
+    if @room.present?
+      @entry = Entry.find_by(room_id: @room.id)
+    end
     
-    if user_signed_in? && (@animal.trading_status == 1|| @animal.trading_status == 2)
+    if user_signed_in? && (@animal.trading_status == 1|| @animal.trading_status == 2) 
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
           if cu.room_id == u.room_id then
