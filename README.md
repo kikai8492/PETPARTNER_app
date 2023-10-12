@@ -12,7 +12,7 @@
 * 1対1のチャット機能
 
 ## カリキュラム外の技術
-* googlemapのAPI
+* chatgptのAPI
 * ActiveStorage
 
 ## アプリケーションを実行する手順 (クローン作成から起動/起動まで) 
@@ -27,10 +27,10 @@
 https://docs.google.com/spreadsheets/d/1ystuw7rTl5TUu19wWbxEE9tx1UsE4SEc0RPZkGri4-4/edit#gid=782464957
 
 ## E-R図
-![スクリーンショット 2023-09-20 12 01 51](https://github.com/kikai8492/PET_PARTNER/assets/120315393/31e1547d-d62f-4e03-89cf-84640aad01fc)
+スクリーンショット 2023-10-12 14.37.20.png
 
 ## 画面遷移図
-![スクリーンショット 2023-09-19 23 13 48](https://github.com/kikai8492/PET_PARTNER/assets/120315393/79b489d2-5de3-4262-b1fe-6e5269f2b6e6)
+スクリーンショット 2023-10-12 14.44.08.png
 
 
 ## ワイヤーフレームのリンクは以下の通り
