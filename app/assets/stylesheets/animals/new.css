@@ -11,3 +11,27 @@
 h1 {
   font-size: 5rem;
 }
+
+.custom-label {
+  margin-right: 10px;
+  display: inline-block;  /* インラインブロックとして表示 */
+  text-align: center;
+  width: 100px;
+}
+
+table td {
+  width: 100%;
+  padding: 10px;
+}
+
+#image_preview {
+  display: inline-flex;
+  gap: 10px;  /* 画像間のスペース */
+  text-align: center;
+}
+
+table {
+  width: 70%; /* お好みに合わせて調整 */
+  margin-left: auto;
+  margin-right: auto;
+}

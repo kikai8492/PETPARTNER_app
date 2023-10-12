@@ -1,86 +1,70 @@
 <div class="evaluation_body">
 
   <div class="evaluation_header">
-    <h1><%= current_user.nick_name%>の取引評価一覧</h1>
+    <h1 class="text-6xl ..."><%= current_user.nick_name%>の取引評価一覧</h1>
   </div>
 
   <% if @trading_evaluations.present?%>
-    <div class = "evaluation">
-      <table>
+    <div class="evaluation">
+    <table class="evaluation_table">
         <tr>
-          <th>取引相手</th>
-          <tr>
-            <td>
-              <% @trading_partner.each do |trading_partner|%>
-                <tr>
-                  <td><%= trading_partner.nick_name%></td>
-                </tr>
-              <% end %>
-            </td>
-          </tr>
+            <th>取引相手</th>
         </tr>
-      </table>
-        
-      <table>
-        <tr>
-          <th>評価日</th>
-          <tr>
-            <td>
-              <% @trading_evaluations.each do |trading_evaluation|%>
-                <tr>
-                  <td><%= trading_evaluation.created_at.strftime("%Y-%m-%d") %></td>
-                </tr>
-              <% end %>
-            </td>
-          </tr>
-        </tr>
-      </table>
+        <% @trading_partner.each do |trading_partner| %>
+            <tr>
+                <td><%= trading_partner.nick_name %></td>
+            </tr>
+        <% end %>
+    </table>
 
-      <table>
+    <table class="evaluation_table">
         <tr>
-          <th>評価</th>
-          <tr>
-            <td>
-              <% @trading_evaluations.each do |trading_evaluation|%>
-                <tr>
-                  <td><%= trading_evaluation.score %></td>
-                </tr>
-              <% end %>
-            </td>
-          </tr>
+            <th>評価日</th>
         </tr>
-      </table>
+        <% @trading_evaluations.each do |trading_evaluation| %>
+            <tr>
+                <td><%= trading_evaluation.created_at.strftime("%Y-%m-%d") %></td>
+            </tr>
+        <% end %>
+    </table>
 
-      <table>
+    <table class="evaluation_table">
         <tr>
-          <th>評価コメント</th>
-          <tr>
-            <td>
-              <% @trading_evaluations.each do |trading_evaluation|%>
-                <tr>
-                  <td><%= trading_evaluation.feedback %></td>
-                </tr>
-              <% end %>
-            </td>
-          </tr>
+            <th>評価</th>
         </tr>
-      </table>
+        <% @trading_evaluations.each do |trading_evaluation| %>
+            <tr>
+                <td><%= trading_evaluation.score %></td>
+            </tr>
+        <% end %>
+    </table>
 
-      <table>
+    <table class="evaluation_table">
         <tr>
-          <th>チャットルーム</th>
-          <td>
-            <% @chat_rooms.each do |chat_room|%>
-              <tr>
-                <td><%= link_to "チャットルームへ", room_path(chat_room)%></td>
-              </tr>
-              <% end %>
-          </td>
+            <th>評価コメント</th>
         </tr>
-      </table>
-    </div>
+        <% @trading_evaluations.each do |trading_evaluation| %>
+            <tr>
+                <td><%= trading_evaluation.feedback %></td>
+            </tr>
+        <% end %>
+    </table>
+
+    <table class="evaluation_table">
+        <tr>
+            <th>チャットルーム</th>
+        </tr>
+        <% @chat_rooms.each do |chat_room| %>
+            <tr>
+                <td>
+                    <%= link_to "チャットルームへ", room_path(chat_room), class: "height 1px inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+</div>
   <% else %>
-    <h2>まだ取引評価はありません</h2>
+    <h2 class="text-3xl ...">まだ取引評価はありません</h2>
   <% end %>
-<%= link_to "戻る", user_path(current_user)%>
+<%= link_to "戻る", user_path(current_user), class: "py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-900 font-semibold text-gray-800 hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:border-gray-900 dark:text-white dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800"%>
 </div>

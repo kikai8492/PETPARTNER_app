@@ -1,41 +1,41 @@
 <div class = "user_info"> 
-  <h1><%= current_user.nick_name%>のページ</h1>
+  <h1 class="text-6xl ..."><%= current_user.nick_name%>のページ</h1>
 
   <%= image_tag current_user.icon.url,width: "100rem", height: "100rem",class:"inline-block h-20 w-20 rounded-full ring-2 ring-white dark:ring-gray-800" %>
 
-  <p>ユーザーネーム:<%= current_user.nick_name%></p>
+  <p class = "user_show_p">ユーザーネーム:<%= current_user.nick_name%></p>
 
-  <p>苗字:<%= current_user.last_name%></p>
+  <p class = "user_show_p">苗字:<%= current_user.last_name%></p>
 
-  <p>名前:<%= current_user.first_name%></p>
+  <p class = "user_show_p">名前:<%= current_user.first_name%></p>
 
-  <p>電話番号:<%= current_user.phone_number%></p>
+  <p class = "user_show_p">電話番号:<%= current_user.phone_number%></p>
 
-  <p>メールアドレス:<%= current_user.email%></p>
+  <p class = "user_show_p">メールアドレス:<%= current_user.email%></p>
 
-  <p>郵便番号:<%= current_user.postal_code%></p>
+  <p class = "user_show_p">郵便番号:<%= current_user.postal_code%></p>
 
-  <p>都道府県:<%= current_user.prefecture %>
+  <p class = "user_show_p">都道府県:<%= current_user.prefecture %>
 
-  <p>市区町村:<%= current_user.municipality%></p>
+  <p class = "user_show_p">市区町村:<%= current_user.municipality%></p>
 
-  <p>以降の住所:<%= current_user.street_address%></p>
+  <p class = "user_show_p">以降の住所:<%= current_user.street_address%></p>
 
-  <p>性別:<%= current_user.sex%></p>
+  <p class = "user_show_p">性別:<%= current_user.sex%></p>
 
-  <p>職業:<%= current_user.occupation %></p>
+  <p class = "user_show_p">職業:<%= current_user.occupation %></p>
 
   <% if current_user.movable_range == 0%>
-    <p>取引可能範囲:0~50km</p>
+    <p class = "user_show_p">取引可能範囲:0~50km</p>
   <% elsif current_user.movable_range == 1%>
-    <p>取引可能範囲:50~100km</p>
+    <p class = "user_show_p">取引可能範囲:50~100km</p>
   <% elsif current_user.movable_range == 2%>
-    <p>取引可能範囲:100~200km</p>
+    <p class = "user_show_p">取引可能範囲:100~200km</p>
   <% else %>
-    <p>取引可能範囲:それ以上可能</p>
+    <p class = "user_show_p">取引可能範囲:それ以上可能</p>
   <% end %>
 
-  <p>自己紹介:<%= current_user.self_introduction%></p>
+  <p class = "user_show_p">自己紹介:<%= current_user.self_introduction%></p>
 </div>
 
 <div class = "button">

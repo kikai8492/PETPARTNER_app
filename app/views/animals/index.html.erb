@@ -62,19 +62,17 @@
         "鹿児島県", "沖縄県"
         ]%>
 
-        <%# <div class="dropdown"> %>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="prefectureDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            都道府県を選択
-            </button>
-            <div class="dropdown-menu" aria-labelledby="prefectureDropdown" style="max-height: 300px; overflow-y: auto;">
-                <% prefectures.each do |prefecture_name| %>
-                    <div class="form-check px-4">
-                        <%= check_box_tag 'prefecture[]', prefecture_name, false, id: "prefecture_#{prefecture_name}", class: 'form-check-input' %> 
-                        <%= label_tag "prefecture_#{prefecture_name}", prefecture_name, class: 'form-check-label' %>
-                    </div>
-                <% end %>
-            </div>
-        <%# </div> %>
+          <button class = "py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border border-black font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" type="button" id="prefectureDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          都道府県を選択
+          </button>
+          <div class="dropdown-menu" aria-labelledby="prefectureDropdown" style="max-height: 300px; overflow-y: auto;">
+              <% prefectures.each do |prefecture_name| %>
+                  <div class="form-check px-4">
+                      <%= check_box_tag 'prefecture[]', prefecture_name, false, id: "prefecture_#{prefecture_name}", class: 'form-check-input' %> 
+                      <%= label_tag "prefecture_#{prefecture_name}", prefecture_name, class: 'form-check-label' %>
+                  </div>
+              <% end %>
+          </div>
 
         <%= form.submit "検索する", class:"py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border-2 border-pink-200 font-semibold text-pink-500 hover:text-white hover:bg-pink-500 hover:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
       <% end %>
@@ -82,31 +80,35 @@
   </div>
 </header>
 
-<body>
-  <table>
-    <% if @animals.present?%>
+
+  <% if @animals.present? %>
+    <table>
       <% @animals.each_slice(5) do |animal_group| %>
         <tr>
           <% animal_group.each do |animal| %>
             <td>
-              <%= link_to animal_path(animal) do %>
+              <%= link_to animal_path(animal), class: "animal-link" do %>
                 <%= image_tag url_for(animal.images.first), size: "200x200", class: "animal-image" %>
               <% end %>
             </td>
           <% end %>
         </tr>
       <% end %>
-    <% else %>
-      <div class = "no_animals">
-        <h1>動物が見つかりません</h1>
-      </div>
-    <% end %>
-  </table>
-</body>
+    </table>
+  <% else %>
+    <div class="no_animals">
+      <h1>動物が見つかりません</h1>
+    </div>
+  <% end %>
 
-<footer>
-  <p>@PETPARTNER</p>
-</footer>
+  <body class="flex flex-col min-h-screen">
+    <div class="flex-grow bg-yellow-50">
+      <%= yield %>
+    </div>
+    <footer class="bg-gray-400 text-white text-center py-6">
+      <p>@PETPARTNER</p>
+    </footer>
+  </body>
 
 <div id="selectedPrefectures">
   <script>

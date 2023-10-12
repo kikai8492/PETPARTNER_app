@@ -10,34 +10,36 @@
     </div>
   <% end %>
 
- 
-  <% if @animal.user == current_user%>
-    <h3><%= @animal.pet_name%>を<%= @trading_partner.nick_name%>さんへ譲渡しましたか？</h3>
-    <%= trading_evaluation.label :get_animal, "譲渡した:" %>
-    <%= trading_evaluation.check_box :get_animal,{},  "譲渡済み", ""%>
-  <% else %>
-    <h3><%= @animal.pet_name%>を<%= @trading_partner.nick_name%>さんから引き取りましたか？</h3>
-    <%= trading_evaluation.label :get_animal, "引き取った:" %>
-    <%= trading_evaluation.check_box :get_animal,{},  "引き取り済み", ""%>
-  <% end %>
+  
+    <% if @animal.user == current_user%>
+      <h3 class="text-3xl ..."><%= @animal.pet_name%>を<%= @trading_partner.nick_name%>さんへ譲渡しましたか？</h3>
+      <%= trading_evaluation.label :get_animal, "譲渡した:" %>
+      <%= trading_evaluation.check_box :get_animal,{},  "譲渡済み", ""%>
+    <% else %>
+      <h3 class="text-3xl ..."><%= @animal.pet_name%>を<%= @trading_partner.nick_name%>さんから引き取りましたか？</h3>
+      <%= trading_evaluation.label :get_animal, "引き取った:" %>
+      <%= trading_evaluation.check_box :get_animal,{},  "引き取り済み", ""%>
+    <% end %>
 
-  <h1><%= @trading_partner.nick_name%>さんへの評価を行ってください</h1>
+    <h1 class="text-3xl ..."><%= @trading_partner.nick_name%>さんへの評価を行ってください</h1>
 
-  <h3>評価</h3>
+    <%= trading_evaluation.radio_button :score, :"良かった"%>
+    <%= trading_evaluation.label :score, "良かった"%>
 
-  <%= trading_evaluation.radio_button :score, :"良かった"%>
-  <%= trading_evaluation.label :score, "良かった"%>
+    <%= trading_evaluation.radio_button :score, :"悪かった"%>
+    <%= trading_evaluation.label :score, "悪かった"%>
 
-  <%= trading_evaluation.radio_button :score, :"悪かった"%>
-  <%= trading_evaluation.label :score, "悪かった"%>
+    <h3 class="text-3xl ...">評価コメント</h3>
+      <%= trading_evaluation.text_field :feedback, class:"bg-gray-200 rounded-md"%>
+    
 
-  <h3>評価コメント</h3>
-  <%= trading_evaluation.text_field :feedback, class:"bg-gray-200 rounded-md"%>
+    <%= trading_evaluation.hidden_field :user_id, value: current_user.id %>
+    <%= trading_evaluation.hidden_field :receive_user_id, value: @trading_partner.id %>
 
-  <%= trading_evaluation.hidden_field :user_id, value: current_user.id %>
-  <%= trading_evaluation.hidden_field :receive_user_id, value: @trading_partner.id %>
+    <%= trading_evaluation.hidden_field :room_id, value: @room.id %>
 
-  <%= trading_evaluation.hidden_field :room_id, value: @room.id %>
-
-  <%= trading_evaluation.submit "評価する" %>
+    <br>
+    <div class = "submit">
+      <%= trading_evaluation.submit "評価する",class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+    </div>
 <% end %>

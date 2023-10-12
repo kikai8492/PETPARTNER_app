@@ -12,9 +12,9 @@
 
 
   <header>
-    <h1>飼い主チェッカー</h1>
+    <h1 class="text-6xl ...">飼い主チェッカー</h1>
     <% unless current_user.options.exists?%>
-      <h4>アプリを使用するにあたり、はじめにあなたの飼い主としての適正を診断します</h4>
+      <h4 class = "first-check">アプリを使用するにあたり、はじめにあなたの飼い主としての適正を診断します</h4>
     <% end %>
   </header>
 
@@ -69,7 +69,7 @@
       <%= form.select :answer10, [["当てはまる",10],["やや当てはまる",8],["やや当てはまらない",5],["当てはまらない",3]],include_blank: "選択して下さい"%>
     </div>
 
-    <%= form.submit "診断する" %>
+    <%= form.submit "診断する", class:"py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-blue-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
     
   </body>
 <% end %>

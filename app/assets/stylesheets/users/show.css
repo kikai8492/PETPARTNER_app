@@ -8,9 +8,13 @@ body {
 }
 
 .user_info {
-  padding-top: 10rem;
   padding-bottom: 5rem;
   text-align: center;
+}
+
+.user_show_p {
+  font-size: 30px;
+  padding:10px 0 10px 0;
 }
 
 .button {

@@ -15,6 +15,7 @@ ja:
         prefecture: 都道府県
         images: 画像
       user:
+        icon: アイコン
         first_name: 名前
         last_name: 苗字
         nick_name: ユーザーネーム
@@ -29,6 +30,7 @@ ja:
         sex: 性別
         occupation: 職業
         self_introduction: 自己紹介
+        terms_of_use: 利用規約
       chat: 
         message: メッセージ
       option:

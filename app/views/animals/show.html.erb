@@ -4,42 +4,46 @@
 
 <div class = "animal_info">
   <% if @animal.trading_status == 1 && current_user != @animal.user%>
-    <h2><%= @animal.pet_name%>は現在取引中です。</h2>
+    <h2 class="text-3xl ..."><%= @animal.pet_name%>は現在取引中です。</h2>
   <% end %>
 
   <% if @animal.trading_status == 2 && current_user != @animal.user%>
-    <h2><%= @animal.pet_name%>の里親は無事に見つかりましたので応募できません</h2>
+    <h2 class="text-3xl ..."><%= @animal.pet_name%>の里親は無事に見つかりましたので応募できません</h2>
   <% end %>
   <%if @animal.images.attached? %>
-    <% @animal.images.each do |image|%>
-      <%= image_tag image, size:"200x200" %>
-    <% end %>
+    <div class = "show_image_preview">
+      <% @animal.images.each do |image|%>
+        <%= image_tag image, size:"200x200" %>
+      <% end %>
+    </div>
   <% end %>
 
-  <p>種類:<%= @animal.pet_type %></p>
+  <p class = "show_p">種類:<%= @animal.pet_type %></p>
 
-  <p>性別:<%= @animal.sex %></p>
+  <p class = "show_p">性別:<%= @animal.sex %></p>
 
-  <p>年齢:<%= @animal.age %></p>
+  <p class = "show_p">年齢:<%= @animal.age %></p>
 
-  <p>ワクチン接種状況:<%= @animal.vaccinated %></p>
+  <p class = "show_p">ワクチン接種状況:<%= @animal.vaccinated %></p>
 
-  <p>去勢手術:<%= @animal.spayed_neutered %></p>
+  <p class = "show_p">去勢手術:<%= @animal.spayed_neutered %></p>
 
-  <p>都道府県:<%= @animal.prefecture%>
+  <p class = "show_p">都道府県:<%= @animal.prefecture%>
 
-  <p>説明:<%= @animal.note%></p>
+  <p class = "show_p">説明:<%= @animal.note%></p>
 
-  <p>投稿したユーザー:<%= @animal.user.nick_name%></p>
+  <p class = "show_p">投稿したユーザー:<%= @animal.user.nick_name%></p>
 </div>
 
 <div class = "favorite">
   <% if user_signed_in? && @animal.user != current_user%>
-    <% if current_user.favorited_by?(@animal.id)%>
-      <%= link_to "❤️", animal_favorite_path(@animal), method: :delete%><%= @animal.favorites.count%>
-    <% else %>
-      <%= link_to "♡", animal_favorites_path(@animal), method: :post%><%= @animal.favorites.count%>
-    <% end %>
+    <div class = "favorite">
+      <% if current_user.favorited_by?(@animal.id)%>
+        <%= link_to "❤️", animal_favorite_path(@animal), method: :delete%><%= @animal.favorites.count%>
+      <% else %>
+        <%= link_to "♡", animal_favorites_path(@animal), method: :post%><%= @animal.favorites.count%>
+      <% end %>
+    </div>
   <% end %>
 </div>
 
@@ -49,12 +53,12 @@
     <%= link_to "削除する", animal_path, method: :delete, data: {confirm: "本当に削除してもいいですか？"},class: "py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-red-200 font-semibold text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"%>
   <% end %>
 
-  <% if current_user == @animal.user  && (@animal.trading_status == 1 || @animal.trading_status == 2)%>
+  <% if current_user == @animal.user  && (@animal.trading_status == 1 || @animal.trading_status == 2) %>
     <%= link_to "取引画面へ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
   <% end %>
 
-  <% if user_signed_in? && @animal.user != current_user%>
-    <% if @isRoom == true %>
+  <% if user_signed_in? && @animal.user != current_user %>
+    <% if @isRoom == true && current_user.id == @entry.user_id%>
       <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
     <% else %>
       <%= form_for @room, url: start_chat_animal_path(@animal) do |f|%> <!-- start_chatのルートを指定する必要があります -->

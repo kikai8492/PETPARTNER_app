@@ -9,13 +9,32 @@
   height: 100%;
 }
 
-.evaluation {
+/* .evaluation {
   text-align: center;
 }
 
-.evaluation table {
+.evaluation_table {
   display: inline-block;  
   width: auto;       
   margin-right: 5rem;     
-  text-align: center;
+} */
+
+.evaluation {
+  display: flex;
+  align-items: start;
+  gap: 20px;
+}
+
+.evaluation_table {
+  border-collapse: collapse;
+}
+
+.evaluation_table th, .evaluation_table td {
+  
+  padding: 8px 12px;
+}
+
+/* チャットルームへのリンクスタイルを修正 */
+.height\:1px {
+  height: 1px;
 }
