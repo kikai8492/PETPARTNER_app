@@ -27,11 +27,11 @@
 https://docs.google.com/spreadsheets/d/1ystuw7rTl5TUu19wWbxEE9tx1UsE4SEc0RPZkGri4-4/edit#gid=782464957
 
 ## E-R図
-スクリーンショット 2023-10-12 14.37.20.png
+![Alt text](<スクリーンショット 2023-10-12 14.37.20.png>)
+
 
 ## 画面遷移図
-スクリーンショット 2023-10-12 14.44.08.png
-
+![Alt text](<スクリーンショット 2023-10-12 14.44.08.png>)
 
 ## ワイヤーフレームのリンクは以下の通り
 https://docs.google.com/spreadsheets/d/1ystuw7rTl5TUu19wWbxEE9tx1UsE4SEc0RPZkGri4-4/edit#gid=1995000839
