@@ -21,19 +21,6 @@ class Animal < ApplicationRecord
 
   private
 
-  # def images_max_length
-  #   if images.length >= 10
-  #     images.purge
-  #     errors.add(:images, "は10枚以内にしてください")
-  #   end
-  # end
-
-  # def images_min_length
-  #   if images.length < 1
-  #     images.purge
-  #     errors.add(:images, "は最低1枚必要です")
-  #   end
-  # end
   def images_max_length
     if images.length > 10
       errors.add(:images, "は10枚以内にしてください")

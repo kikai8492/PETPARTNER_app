@@ -80,7 +80,7 @@
   </div>
 </header>
 
-<body>
+
   <% if @animals.present? %>
     <table>
       <% @animals.each_slice(5) do |animal_group| %>
@@ -100,11 +100,15 @@
       <h1>動物が見つかりません</h1>
     </div>
   <% end %>
-</body>
 
-<footer>
-  <p>@PETPARTNER</p>
-</footer>
+  <body class="flex flex-col min-h-screen">
+    <div class="flex-grow bg-yellow-50">
+      <%= yield %>
+    </div>
+    <footer class="bg-gray-400 text-white text-center py-6">
+      <p>@PETPARTNER</p>
+    </footer>
+  </body>
 
 <div id="selectedPrefectures">
   <script>
