@@ -15,3 +15,7 @@ class TradingAnimalsController < ApplicationController
     @all_animals = animals + trading_now
   end
 end
+
+
+
+#hogehoghe
