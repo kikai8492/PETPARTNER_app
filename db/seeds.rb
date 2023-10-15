@@ -27,6 +27,7 @@ end
 for i in 10..19 do
   User.create!(
     email: "kikai#{i+1}@icloud.com",
+    password: "aaaaaa",
     last_name: "hugahuga#{i+1}",
     first_name: "hogehoge#{i+1}",
     nick_name: "user#{i+1}",
@@ -40,13 +41,15 @@ for i in 10..19 do
     phone_number: "090123456#{i + 1}",
     admin: false,
     icon: "download-2.jpg",
-    self_introduction: "user#{i + 1}です。よろしくお願いします"
+    self_introduction: "user#{i + 1}です。よろしくお願いします",
+    terms_of_use: "利用規約に同意しました"
   )
 end
 
 
 User.create!(
   email: "yysskikai05@icloud.com",
+  password: "PKPKkikai321",
   last_name: "脩斗",
   first_name: "鬼海",
   nick_name: "鬼海",
@@ -60,5 +63,6 @@ User.create!(
   phone_number: "090123456#{i + 1}",
   admin: true,
   icon: "download-2.jpg",
-  self_introduction: "user#{i + 1}です。よろしくお願いします"
+  self_introduction: "user#{i + 1}です。よろしくお願いします",
+  terms_of_use: "利用規約に同意しました"
 )
