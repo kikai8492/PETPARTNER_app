@@ -48,21 +48,21 @@ end
 
 
 User.create!(
-  email: "yysskikai05@icloud.com",
-  password: "PKPKkikai321",
-  last_name: "脩斗",
-  first_name: "鬼海",
-  nick_name: "kikai",
+  email: "admin@icloud.com",
+  password: "aaaaaa",
+  last_name: "fwaef",
+  first_name: "fwaef",
+  nick_name: "admin",
   postal_code: "12345",
   prefecture: "東京都",
   municipality: "渋谷区",
-  street_address: "渋谷",
+  street_address: "渋谷4",
   movable_range: 1,
   sex: "男",
   occupation: "会社員",
   phone_number: "090123456#",
   admin: true,
   icon: "download-2.jpg",
-  self_introduction: "kikaiです。よろしくお願いします",
+  self_introduction: "adminです。よろしくお願いします",
   terms_of_use: "利用規約に同意しました"
 )
