@@ -49,7 +49,7 @@ gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
 
-gem 'rack-timeout'
+gem 'rack-timeout', require: "rack/timeout/base"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

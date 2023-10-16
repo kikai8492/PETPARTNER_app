@@ -1,1 +1,1 @@
-Rack::Timeout.service_timeout = 60_000  # タイムアウト時間を60秒に設定
+Rails.application.config.middleware.insert_before Rack::Runtime, Rack::Timeout, service_timeout: 60
