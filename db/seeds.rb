@@ -24,27 +24,27 @@ questions.each do |question|
   Question.create!(query: question)
 end
 
-# for i in 10..19 do
-#   User.create!(
-#     email: "kikai#{i+1}@icloud.com",
-#     password: "aaaaaa",
-#     last_name: "hugahuga#{i+1}",
-#     first_name: "hogehoge#{i+1}",
-#     nick_name: "user#{i+1}",
-#     postal_code: "12345#{i + 1}",
-#     prefecture: "東京都",
-#     municipality: "渋谷区",
-#     street_address: "渋谷#{i+1}",
-#     movable_range: 1,
-#     sex: "男",
-#     occupation: "会社員",
-#     phone_number: "090123456#{i + 1}",
-#     admin: false,
-#     icon: "download-2.jpg",
-#     self_introduction: "user#{i + 1}です。よろしくお願いします",
-#     terms_of_use: "利用規約に同意しました"
-#   )
-# end
+10.times do |i|
+  User.create!(
+    email: "kikai#{i+1}@icloud.com",
+    password: "aaaaaa",
+    last_name: "hugahuga#{i+1}",
+    first_name: "hogehoge#{i+1}",
+    nick_name: "user#{i+1}",
+    postal_code: "12345#{i + 1}",
+    prefecture: "東京都",
+    municipality: "渋谷区",
+    street_address: "渋谷#{i+1}",
+    movable_range: 1,
+    sex: "男",
+    occupation: "会社員",
+    phone_number: "090123456#{i + 1}",
+    admin: false,
+    icon: "download-2.jpg",
+    self_introduction: "user#{i + 1}です。よろしくお願いします",
+    terms_of_use: "利用規約に同意しました"
+  )
+end
 
 
 User.create!(
