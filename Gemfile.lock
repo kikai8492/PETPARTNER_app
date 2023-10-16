@@ -408,6 +408,7 @@ DEPENDENCIES
   rails_admin
   ruby-openai
   sass-rails (>= 6)
+  sassc-rails
   selenium-webdriver (>= 4.0.0.rc1)
   spring
   turbolinks (~> 5)
