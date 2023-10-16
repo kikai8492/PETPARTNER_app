@@ -5,7 +5,6 @@
 * Rails:6.1.6
 
 ## 就業Termの技術は以下の通り
-* AWS
 * Ajax
 * お気に入り機能
 * devise
