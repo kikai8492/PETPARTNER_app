@@ -56,7 +56,7 @@ User.create!(
   postal_code: "12345",
   prefecture: "東京都",
   municipality: "渋谷区",
-  street_address: "渋谷",
+  street_address: "渋谷4",
   movable_range: 1,
   sex: "男",
   occupation: "会社員",
