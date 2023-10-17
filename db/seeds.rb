@@ -60,7 +60,7 @@ User.create!(
   movable_range: 1,
   sex: "男",
   occupation: "会社員",
-  phone_number: "090123456#",
+  phone_number: "123057",
   admin: true,
   icon: "download-2.jpg",
   self_introduction: "adminです。よろしくお願いします",
