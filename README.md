@@ -5,6 +5,7 @@
 * Rails:6.1.6
 
 ## 就業Termの技術は以下の通り
+* AWS EC2
 * Ajax
 * お気に入り機能
 * devise
@@ -13,6 +14,7 @@
 ## カリキュラム外の技術
 * chatgptのAPI
 * ActiveStorage
+* Tailwind.css
 
 ## アプリケーションを実行する手順 (クローン作成から起動/起動まで) 
 1. git clone https://github.com/kikai8492/PETPARTNER_app.git
