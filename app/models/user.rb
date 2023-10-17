@@ -13,7 +13,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :icon, presence: true
+  # validates :icon, presence: true
   mount_uploader :icon, ImageUploader
   validates :last_name, presence: true
   validates :first_name, presence: true
