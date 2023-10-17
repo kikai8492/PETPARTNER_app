@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to animals_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
   # before_action :configure_sign_in_params, only: [:create]
-
+  def admin_sign_in
+    user = User.admin
+    sign_in user
+    redirect_to rails_admin_path, notice: '管理者としてログインしました。'
+  end
   # GET /resource/sign_in
   # def new
   #   super
