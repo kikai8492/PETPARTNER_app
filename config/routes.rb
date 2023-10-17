@@ -7,6 +7,14 @@ Rails.application.routes.draw do
     after_sigin_up_path_for: '/new_option_path',
     after_sign_in_path_for: '/animals'
   }
+
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
+  devise_scope :user do
+    post 'users/admin_sign_in', to: 'users/sessions#admin_sign_in'
+  end
   
   resources :animals do
     resources :favorites, only: [:create, :destroy]
