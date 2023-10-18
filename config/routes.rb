@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       delete 'trading_destroy'
     end
   end
-
+  resources :how_to_uses, only: [:index]
   resource :favorites, only: [:show]
   resources :users, only: [:index, :show]
   resources :userinfos, only: [:show]
