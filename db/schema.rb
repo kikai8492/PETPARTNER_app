@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_16_065613) do
+ActiveRecord::Schema.define(version: 2023_10_18_082606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,12 +105,6 @@ ActiveRecord::Schema.define(version: 2023_10_16_065613) do
     t.index ["user_id"], name: "index_options_on_user_id"
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.text "query", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -148,7 +142,7 @@ ActiveRecord::Schema.define(version: 2023_10_16_065613) do
     t.string "occupation", null: false
     t.string "phone_number", null: false
     t.boolean "admin", default: false, null: false
-    t.string "icon", null: false
+    t.string "icon"
     t.text "self_introduction", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
