@@ -1,8 +1,4 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="animals/new.css">
-  </head>
-
   <%= form_with(model: @animal, local:true, url: animals_path) do |form|%>
     <% if @animal.errors.any? %>
       <div id="error_explanation">
