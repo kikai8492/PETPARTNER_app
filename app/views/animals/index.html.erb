@@ -91,7 +91,7 @@
           <% animal_group.each do |animal| %>
             <td>
               <%= link_to animal_path(animal), class: "animal-link" do %>
-                <%= image_tag url_for(animal.images.first), size: "200x200", class: "animal-image" %>
+                <%= image_tag url_for(animal.images.first), size: "200x200", class: "animal-image", alt:"animal_image" %>
               <% end %>
             </td>
           <% end %>

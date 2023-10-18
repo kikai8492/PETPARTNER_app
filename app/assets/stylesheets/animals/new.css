@@ -1,7 +1,7 @@
 #image_preview {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;  /* 画像間のスペース */
+  gap: 10px;  
 }
 
 .preview-image {
@@ -14,7 +14,7 @@ h1 {
 
 .custom-label {
   margin-right: 10px;
-  display: inline-block;  /* インラインブロックとして表示 */
+  display: inline-block;  
   text-align: center;
   width: 100px;
 }
@@ -26,12 +26,12 @@ table td {
 
 #image_preview {
   display: inline-flex;
-  gap: 10px;  /* 画像間のスペース */
+  gap: 10px;  
   text-align: center;
 }
 
 table {
-  width: 70%; /* お好みに合わせて調整 */
+  width: 70%; 
   margin-left: auto;
   margin-right: auto;
 }
