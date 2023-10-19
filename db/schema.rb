@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_082606) do
     t.string "occupation", null: false
     t.string "phone_number", null: false
     t.boolean "admin", default: false, null: false
-    t.string "icon"
+    t.string "icon", null: false
     t.text "self_introduction", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
