@@ -27,8 +27,6 @@ gem "jquery-rails"
 
 gem 'devise'
 
-gem 'geocoder'
-
 gem 'cancancan'
 
 gem 'rails_admin'
