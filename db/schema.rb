@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 2023_10_18_082606) do
     t.bigint "animal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["animal_id"], name: "index_favorites_on_animal_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
