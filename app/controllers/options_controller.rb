@@ -20,7 +20,7 @@ class OptionsController < ApplicationController
   def new
     if user_signed_in?
       @option = Option.new
-      @questions = Question.all
+      # @questions = Question.all
     else
       redirect_to animals_path, notice: "ログインしてください"
     end
