@@ -77,8 +77,7 @@ class OptionsController < ApplicationController
               temperature: 0.7,
           })
 
-      @feedback = response["choices"][0]["message"]["content"]
-  
+      @feedback = response["choices"][0]["message"]["content"]     
   end
 
   private 
