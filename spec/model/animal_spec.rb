@@ -6,4 +6,94 @@ RSpec.describe 'animalモデル機能', type: :model do
       expect(animal).not_to be_valid
     end
   end
+
+  context '動物の種類が空の場合' do
+    before do
+      @animal = FactoryBot.build(:animal_dog)
+      image = fixture_file_upload("spec/factories/dog.jpg")
+      @animal.images.attach(image)
+    end
+    it 'バリデーションにひっかる' do
+      animal = Animal.new(
+        pet_type: [],
+        pet_name: @animal.pet_name,
+        sex: @animal.sex,
+        age: @animal.age,
+        vaccinated: @animal.vaccinated,
+        spayed_neutered: @animal.spayed_neutered,
+        note:  @animal.note,
+        prefecture: @animal.prefecture
+      )
+      animal.images.attach(@animal.images.blobs)
+      expect(animal).not_to be_valid
+    end
+  end
+
+  context '動物の性別が空の場合' do
+    before do
+      @animal = FactoryBot.build(:animal_dog)
+      image = fixture_file_upload("spec/factories/dog.jpg")
+      @animal.images.attach(image)
+    end
+    it 'バリデーションにひっかる' do
+      animal = Animal.new(
+        pet_type: @animal.pet_type,
+        pet_name: @animal.pet_name,
+        sex: [],
+        age: @animal.age,
+        vaccinated: @animal.vaccinated,
+        spayed_neutered: @animal.spayed_neutered,
+        note:  @animal.note,
+        prefecture: @animal.prefecture
+      )
+      animal.images.attach(@animal.images.blobs)
+      expect(animal).not_to be_valid
+    end
+  end
+
+  context '動物の備考が空の場合' do
+    before do
+      @animal = FactoryBot.build(:animal_dog)
+      image = fixture_file_upload("spec/factories/dog.jpg")
+      @animal.images.attach(image)
+    end
+    it 'バリデーションにひっかる' do
+      animal = Animal.new(
+        pet_type: @animal.pet_type,
+        pet_name: @animal.pet_name,
+        sex: @animal.sex,
+        age: @animal.age,
+        vaccinated: @animal.vaccinated,
+        spayed_neutered: @animal.spayed_neutered,
+        note:  [],
+        prefecture: @animal.prefecture
+      )
+      animal.images.attach(@animal.images.blobs)
+      expect(animal).not_to be_valid
+    end
+  end
+
+  context '動物の年齢が空の場合' do
+    before do
+      @animal = FactoryBot.build(:animal_dog)
+      image = fixture_file_upload("spec/factories/dog.jpg")
+      @animal.images.attach(image)
+    end
+    it 'バリデーションにひっかる' do
+      animal = Animal.new(
+        pet_type: @animal.pet_type,
+        pet_name: @animal.pet_name,
+        sex: @animal.sex,
+        age: [],
+        vaccinated: @animal.vaccinated,
+        spayed_neutered: @animal.spayed_neutered,
+        note:  @animal.note,
+        prefecture: @animal.prefecture
+      )
+      animal.images.attach(@animal.images.blobs)
+      expect(animal).not_to be_valid
+    end
+  end
+
+  
 end

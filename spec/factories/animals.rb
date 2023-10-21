@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :animal_dog,class: Animal do
+    id { 1 }
     pet_type { "犬" }
     pet_name { "ポチ" }
     sex { "オス" }
