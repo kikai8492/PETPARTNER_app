@@ -19,6 +19,37 @@ class Animal < ApplicationRecord
   validate :images_max_length
   validate :images_min_length
 
+  scope :animals, -> {
+    where(trading_status: 0)
+  }
+
+  scope :pet_type, -> (pet_type){
+    where(pet_type: pet_type) 
+  }
+
+  scope :vaccinated, -> (vaccinated) {
+    where(vaccinated: vaccinated) 
+  } 
+
+  scope :spayed_neutered, -> (spayed_neutered) {  
+    where(spayed_neutered: spayed_neutered)
+  }
+
+  scope :sex, -> (sex) {
+    where(sex: sex)
+  }
+
+  scope :age, -> (age) {
+    where(age: age)
+  }
+
+  scope :prefecture, -> (prefecture) {
+    where(prefecture: prefecture)
+  }
+
+
+
+
   private
 
   def images_max_length

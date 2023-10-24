@@ -1,34 +1,33 @@
 class AnimalsController < ApplicationController
 
   def index
-    @animals = Animal.where(trading_status: 0)
+    animals = Animal.animals
 
     if params[:pet_type].present?
-      @animals = @animals.where(pet_type: params[:pet_type])
+      animals = animals.pet_type(params[:pet_type])
     end
 
     if params[:vaccinated].present?
-      @animals = @animals.where(vaccinated: params[:vaccinated])
+      animals = animals.vaccinated(params[:vaccinated])
     end
 
     if params[:spayed_neutered].present?
-      @animals = @animals.where(spayed_neutered: params[:spayed_neutered])
+      animals = animals.spayed_neutered(params[:spayed_neutered])
     end
 
     if params[:sex].present?
-      @animals = @animals.where(sex: params[:sex])
+      animals = animals.sex(params[:sex])
     end
 
     if params[:age].present?
-      @animals = @animals.where(age: params[:age])
+      animals = animals.age(params[:age])
     end
 
-  
     if params[:prefecture].present?
-      @animals = @animals.where(prefecture: params[:prefecture])
+      animals = animals.prefecture(params[:prefecture])
     end
 
-    @animals = @animals.shuffle
+    @animals = animals.shuffle
   end
 
   def new
