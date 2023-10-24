@@ -43,12 +43,6 @@ gem 'dotenv-rails'
 
 gem 'unicorn'
 
-gem 'net-smtp'
-gem 'net-imap'
-gem 'net-pop'
-
-gem 'rack-timeout', require: "rack/timeout/base"
-
 gem 'sassc-rails'
 
 gem 'rexml'
