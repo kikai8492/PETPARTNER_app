@@ -47,9 +47,6 @@ class Animal < ApplicationRecord
     where(prefecture: prefecture)
   }
 
-
-
-
   private
 
   def images_max_length
